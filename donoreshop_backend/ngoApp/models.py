@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models
 
 # Create your models here.
@@ -26,9 +28,9 @@ class Event(models.Model):
     name = models.fields.TextField()
     description = models.fields.TextField()
     size = models.fields.IntegerField()
-    ngo = models.fields.ForeignKey(Ngo, on_delete=models.CASCADE)
-    target_date = models.fields.DateField()
-    creation_date = models.fields.DateField()
+    ngo = models.ForeignKey(Ngo, on_delete=models.CASCADE)
+    target_date = models.fields.DateField(default=datetime.datetime.now, blank=True)
+    creation_date = models.fields.DateField(default=datetime.datetime.now, blank=True)
 
 class Product(models.Model):
     id = models.AutoField(primary_key=True, null=False)
@@ -40,15 +42,15 @@ class Product(models.Model):
 
 class EventProduct(models.Model):
     id = models.AutoField(primary_key=True, null=False)
-    event = models.fields.ForeignKey(Event, on_delete=models.CASCADE)
-    product = models.fields.ForeignKey(Product, on_delete=models.CASCADE)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.fields.IntegerField()
     remaining_quantity = models.fields.IntegerField()
 
 class EvenProductReplacements(models.Model):
     id = models.AutoField(primary_key=True, null=False)
-    replacement_product = models.fields.ForeignKey(Product, on_delete=models.CASCADE)
-    event_product = models.fields.ForeignKey(EventProduct, on_delete=models.CASCADE)
+    replacement_product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    event_product = models.ForeignKey(EventProduct, on_delete=models.CASCADE)
 
 
 class EventCart(models.Model):
@@ -61,9 +63,9 @@ class EventCart(models.Model):
 
     id = models.AutoField(primary_key=True, null=False)
     status = models.fields.CharField(max_length= 20, choices= STATUS.choices)
-    event = event = models.fields.ForeignKey(Event, on_delete=models.CASCADE)
+    event = event = models.ForeignKey(Event, on_delete=models.CASCADE)
     total_bill = models.fields.FloatField()
-    expexcted_delivery_date = models.fields.DateField()
+    expexcted_delivery_date = models.fields.DateField(default=datetime.datetime.now, blank=True)
     amazon_order_id = models.fields.TextField()
     bill = models.fields.URLField()
 

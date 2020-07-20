@@ -36,12 +36,19 @@ class Product(models.Model):
     amazon_url = models.fields.URLField()
     amzon_product_id = models.fields.TextField(null=False)
 
+
+
 class EventProduct(models.Model):
     id = models.AutoField(primary_key=True, null=False)
     event = models.fields.ForeignKey(Event, on_delete=models.CASCADE)
     product = models.fields.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.fields.IntegerField()
     remaining_quantity = models.fields.IntegerField()
+
+class EvenProductReplacements(models.Model):
+    id = models.AutoField(primary_key=True, null=False)
+    replacement_product = models.fields.ForeignKey(Product, on_delete=models.CASCADE)
+    event_product = models.fields.ForeignKey(EventProduct, on_delete=models.CASCADE)
 
 
 class EventCart(models.Model):

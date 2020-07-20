@@ -23,6 +23,7 @@ class Cart(models.Model):
     id = models.AutoField(primary_key=True, null=False)
     donor = models.ForeignKey(Donor, on_delete=models.CASCADE)
     # event = models.ForeignKey(Event)
+    # eventCart = models.ForeignKey(EventCart)
     amountDonated = models.fields.FloatField(blank=True)
     amountUsed = models.fields.FloatField(blank=True)
 

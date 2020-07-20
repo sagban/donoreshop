@@ -24,6 +24,18 @@ class Ngo(models.Model):
 
 
 class Event(models.Model):
+
+    @classmethod
+    def create(cls, event):
+        eventObj = Event()
+        eventObj.name = event['name']
+        eventObj.description = event['description']
+        eventObj.size = event['size']
+        eventObj.ngo = event['ngo']
+
+        return eventObj
+
+
     id = models.AutoField(primary_key=True, null=False)
     name = models.fields.TextField()
     description = models.fields.TextField()
@@ -31,6 +43,7 @@ class Event(models.Model):
     ngo = models.ForeignKey(Ngo, on_delete=models.CASCADE)
     target_date = models.fields.DateField(default=datetime.datetime.now, blank=True)
     creation_date = models.fields.DateField(default=datetime.datetime.now, blank=True)
+
 
 class Product(models.Model):
     id = models.AutoField(primary_key=True, null=False)

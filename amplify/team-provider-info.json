@@ -1,0 +1,20 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-donoreshop-dev-211746-authRole",
+            "UnauthRoleArn": "arn:aws:iam::499523944518:role/amplify-donoreshop-dev-211746-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::499523944518:role/amplify-donoreshop-dev-211746-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-donoreshop-dev-211746-deployment",
+            "UnauthRoleName": "amplify-donoreshop-dev-211746-unauthRole",
+            "StackName": "amplify-donoreshop-dev-211746",
+            "StackId": "arn:aws:cloudformation:us-east-1:499523944518:stack/amplify-donoreshop-dev-211746/8c3a5860-cb69-11ea-ab4c-0a90b7832da7",
+            "AmplifyAppId": "d2py1v5u6w82hg"
+        },
+        "categories": {
+            "auth": {
+                "donoreshop95e1b7f3": {}
+            }
+        }
+    }
+}

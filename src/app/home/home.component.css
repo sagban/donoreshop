@@ -1,0 +1,21 @@
+.home-heading{
+  text-decoration: underline #bd2620;
+}
+
+.slide1{
+  background: url('../../public/img/1920x1080/01.jpg');
+}
+/*.slide2{*/
+  /*background: url('../../public/img/1920x1080/02.jpg');*/
+/*}*/
+/*.slide3{*/
+  /*background: url('../../public/img/1920x1080/03.jpg');*/
+/*}*/
+.slide1, .slide2, .slide3{
+  -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}

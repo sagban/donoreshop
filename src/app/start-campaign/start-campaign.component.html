@@ -1,0 +1,96 @@
+
+<app-header></app-header>
+<div class="s-promo-block-v1 g-fullheight--md sell">
+    <div class="container g-ver-center--md g-padding-y-100--xs g-margin-t-30--xs">
+        <div class="row g-hor-centered-row--md g-margin-t-30--xs g-margin-t-20--sm">
+            <div class="col-lg-6 col-sm-6 g-hor-centered-row__col g-text-center--xs g-text-left--md g-margin-b-60--xs g-margin-b-0--md">
+                <div class="s-promo-block-v1 g-margin-b-60--xs">
+                    <h1 class="g-font-size-36--xs g-font-size-45--sm g-font-size-70--lg g-color--dark">Start your Campaign</h1>
+                    <p class="g-font-size-16--xs g-font-size-22--md g-color--dark g-margin-b-0--xs">Join Helpkart's community of non-profit organizations and start making impact.</p>
+                </div>
+            </div>
+            <div class="col-lg-2"></div>
+            <div class="col-lg-4 col-sm-4 g-hor-centered-row__col">
+              <div class="wow fadeInUp center-block g-width-350--xs g-bg-color--white g-box-shadow__dark-lightest-v1 g-padding-x-40--xs g-padding-y-60--xs g-radius--4" data-wow-duration=".3" data-wow-delay=".1s">
+                <app-signup *ngIf="!have_account && !forgot_password"></app-signup>
+                <app-login *ngIf="have_account && !forgot_password"></app-login>
+                <app-forgot-password *ngIf="forgot_password"></app-forgot-password>
+                <div class="g-text-center--xs">
+                  <div class="g-color--dark g-font-size-13--xs have_account" *ngIf="have_account" (click)="this.forgotPassword();">{{forgot_password_text}}</div>
+                  <div class="g-color--dark g-font-size-13--xs have_account" (click)="this.changeOption();">{{have_account_text}}</div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="clearfix">
+  <div class="row g-row-col--0">
+      <div class="col-sm-3">
+          <div class="g-text-center--xs g-padding-x-30--xs g-padding-x-50--lg g-padding-y-50--xs">
+              <i class="g-display-block--xs g-font-size-40--sm g-color--primary g-margin-b-30--xs material-icons">color_lens</i>
+              <h2 class="g-font-size-26--xs g-font-family--playfair">Design</h2>
+              <p class="g-padding-y-10--xs">Produce high-quality t shirt designs for our customers to buy.</p>
+          </div>
+      </div>
+      <div class="col-sm-3">
+          <div class=" g-text-center--xs g-padding-x-30--xs g-padding-x-50--lg g-padding-y-50--xs">
+              <i class="g-display-block--xs g-font-size-40--sm g-color--primary g-margin-b-30--xs material-icons">wb_cloudy</i>
+              <h2 class="g-font-size-26--xs g-font-family--playfair">Upload</h2>
+              <p class="g-padding-y-10--xs">
+                Upload your content with our easy-to-use platform, and get tips for success.
+              </p>
+          </div>
+      </div>
+      <div class="col-sm-3">
+          <div class="g-bg-color--sky-light g-text-center--xs g-padding-x-30--xs g-padding-x-50--lg g-padding-y-50--xs">
+              <i class="g-display-block--xs g-font-size-40--sm g-color--primary g-margin-b-30--xs material-icons">attach_money</i>
+
+              <h2 class="g-font-size-26--xs g-font-family--playfair">Get Paid</h2>
+              <p class="g-padding-y-10--xs">
+                Make money every time your content is bought by one of our worldwide customers.
+              </p>
+
+          </div>
+      </div>
+      <div class="col-sm-3">
+          <div class="g-text-center--xs g-padding-x-30--xs g-padding-x-50--lg g-padding-y-50--xs">
+              <i class="g-display-block--xs g-font-size-40--sm g-color--primary g-margin-b-30--xs material-icons">share</i>
+
+              <h2 class="g-font-size-26--xs g-font-family--playfair">Share</h2>
+              <p class="g-padding-y-10--xs">
+                Share your personalized portfolio page, and easily track your earnings with our smart tools.
+              </p>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div id="js__scroll-to-section" class="container g-padding-y-80--xs g-padding-y-125--xsm">
+    <div class="row g-hor-centered-row--md g-row-col--5 g-margin-b-80--xs g-margin-b-100--md">
+        <div class="col-sm-5 g-hor-centered-row__col">
+            <p class="text-uppercase g-font-size-14--xs g-font-weight--700 g-color--primary g-letter-spacing--2 g-margin-b-25--xs">Culture</p>
+            <h2 class="g-font-size-32--xs g-font-size-36--sm g-margin-b-25--xs">Join our community</h2>
+            <p class="g-font-size-16--sm">Showcase your work and grow your skills by joining our international community. We aim high at being focused on building relationships with our clients and community.</p>
+        </div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-6 g-hor-centered-row__col">
+            <img class="img-responsive" src="../../public/img/1280x780/03.jpg" alt="Mockup Image">
+        </div>
+    </div>
+    <div class="row g-hor-centered-row--md g-row-col--5">
+        <div class="col-sm-5 col-sm-push-7 g-hor-centered-row__col">
+            <p class="text-uppercase g-font-size-14--xs g-font-weight--700 g-color--primary g-letter-spacing--2 g-margin-b-25--xs">Production</p>
+            <h2 class="g-font-size-32--xs g-font-size-36--sm g-margin-b-25--xs">Easy-to-use Tools</h2>
+            <p class="g-font-size-16--sm">Quickly upload and submit your content, create and share your personalized portfolio page, and easily track your earnings with our smart tools.</p>
+        </div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-6 col-sm-pull-6 g-hor-centered-row__col g-text-left--xs g-text-right--md">
+            <img class="img-responsive" src="../../public/img/1280x780/02.jpg" alt="Mockup Image">
+        </div>
+    </div>
+</div>
+
+
+<app-footer></app-footer>

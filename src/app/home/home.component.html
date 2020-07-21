@@ -1,0 +1,268 @@
+<app-header></app-header>
+<!--========== SWIPER SLIDER ==========-->
+<div class="s-promo-block-v4 g-fullheight--xs g-bg-position--center swiper-slide slide1">
+            <div class="container g-ver-center--xs g-margin-t-30--xs">
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="g-margin-b-30--xs">
+                          <h3 class="g-font-size-20--xs g-font-size-36--sm g-font-size-36--md g-color--dark">Welcome to Helpkart!</h3>
+                            <h1 class="g-font-size-32--xs g-font-size-45--sm g-font-size-60--md g-color--dark">Donate supplies to any cause of your choice.</h1>
+                            <p class="g-font-size-18--xs g-font-size-22--sm g-color--dark">powered by Amazon Products</p>
+                        </div>
+                        <a href="" class="text-uppercase s-btn s-btn--xs s-btn--primary-bg g-radius--50 g-padding-x-50--xs g-margin-r-10--xs">Donate now</a>
+                        <a href="" class="text-uppercase s-btn s-btn--xs s-btn--dark-brd g-radius--50 g-padding-x-50--xs">Start A Campaign</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+<div class="g-hor-divider__dashed--sky-light">
+  <div class="clearfix">
+      <div class="row g-row-col--0">
+          <div class="col-sm-3">
+              <div class="g-text-center--xs g-padding-x-30--xs g-padding-x-50--lg g-padding-y-70--xs">
+                  <i class="g-display-block--xs g-font-size-50--sm g-color--primary g-margin-b-10--xs material-icons">search</i>
+
+                  <h2 class="g-font-size-26--xs g-font-family--playfair">Browse Schemes</h2>
+                  <p class="g-padding-y-10--xs">
+                    Donate supplies to any cause of your choice.
+                  </p>
+                <!--<a href="/store" class="text-uppercase s-btn s-btn&#45;&#45;xs s-btn&#45;&#45;primary-brd g-radius&#45;&#45;50 g-padding-x-40&#45;&#45;xs">View All</a>-->
+              </div>
+          </div>
+          <div class="col-sm-3">
+              <div class="g-text-center--xs g-padding-x-30--xs g-padding-x-50--lg g-padding-y-70--xs">
+                  <i class="g-display-block--xs g-font-size-50--sm g-color--primary g-margin-b-10--xs material-icons">add_shopping_cart</i>
+
+                  <h2 class="g-font-size-26--xs g-font-family--playfair">Add To Cart</h2>
+                  <p class="g-padding-y-10--xs">
+                    Design your t-shirt with the utmost ease. Just upload, drag and drop!
+                  </p>
+                <!--<a href="/studio" class="text-uppercase s-btn s-btn&#45;&#45;xs s-btn&#45;&#45;primary-brd g-radius&#45;&#45;50 g-padding-x-40&#45;&#45;xs">To Studio</a>-->
+              </div>
+          </div>
+          <div class="col-sm-3">
+              <div class="g-bg-color--sky-light g-text-center--xs g-padding-x-30--xs g-padding-x-50--lg g-padding-y-70--xs">
+                  <i class="g-display-block--xs g-font-size-50--sm g-color--primary g-margin-b-10--xs material-icons">attach_money</i>
+
+                  <h2 class="g-font-size-26--xs g-font-family--playfair">Donate</h2>
+                  <p class="g-padding-y-10--xs">
+                    Earn from your designs and leave the manufacturing and shipping to us.
+                  </p>
+                <!--<a href="/sell_your_design" class="text-uppercase s-btn s-btn&#45;&#45;xs s-btn&#45;&#45;primary-brd g-radius&#45;&#45;50 g-padding-x-40&#45;&#45;xs">Get Started</a>-->
+              </div>
+          </div>
+          <div class="col-sm-3">
+              <div class="g-text-center--xs g-padding-x-30--xs g-padding-x-50--lg g-padding-y-70--xs">
+                  <i class="g-display-block--xs g-font-size-50--sm g-color--primary g-margin-b-10--xs material-icons">sentiment_very_satisfied</i>
+
+                  <h2 class="g-font-size-26--xs g-font-family--playfair">Create Impact</h2>
+                  <p class="g-padding-y-10--xs">
+                    Earn from your designs and leave the manufacturing and shipping to us.
+                  </p>
+                <!--<a href="/sell_your_design" class="text-uppercase s-btn s-btn&#45;&#45;xs s-btn&#45;&#45;primary-brd g-radius&#45;&#45;50 g-padding-x-40&#45;&#45;xs">Get Started</a>-->
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<div class="container g-padding-y-80--xs g-padding-y-125--xsm">
+    <div class="row g-margin-b-30--xs">
+        <div class="col-sm-3">
+            <div class="g-margin-t-20--md g-margin-b-40--xs g-text-center--xs g-text-left--md">
+                <p class="text-uppercase g-font-size-14--xs g-font-weight--700 g-color--primary g-letter-spacing--2 g-margin-b-25--xs">Important</p>
+                <h2 class="g-font-size-32--xs g-font-size-46--md g-line-height g-margin-b-30--xs">Featured <br> Campaigns</h2>
+                <!--<p>We are masters of most current technologies.<br>Check us out and enjoy things that we know we're good at.</p>-->
+              <a href="/store" class="text-uppercase s-btn s-btn--xs s-btn--primary-brd g-radius--50 g-padding-x-40--xs">View All</a>
+            </div>
+        </div>
+
+        <div class="col-sm-9">
+            <!-- Portfolio Gallery -->
+          <!-- Swiper -->
+          <div class="s-swiper js__swiper-news">
+              <!-- Wrapper -->
+              <div class="swiper-wrapper g-margin-b-60--xs">
+
+                <div class="swiper-slide" *ngFor="let product of products">
+                  <a href="/product/{{product?.designerId}}/{{replaceSpace(product?.title)}}/{{product?._id}}/buy">
+                  <app-product title="{{product?.title}}" designer="{{product?.designerId}}" price="{{product?.price}}" rating="{{product?.rating}}" image="{{product?.tshirtImage}}"></app-product>
+                </a>
+                </div>
+
+
+              </div>
+              <!-- End Wrapper -->
+
+              <!-- Pagination -->
+              <div class="s-swiper__pagination-v1--dark s-swiper__pagination-v1 g-text-center--xs js__swiper-pagination"></div>
+          </div>
+
+            <!-- End Portfolio Gallery -->
+        </div>
+    </div>
+</div>
+
+<div class="g-hor-divider__solid--sky-light">
+    <div class="container g-padding-y-80--xs">
+      <div class="g-margin-b-60--xs g-text-center--xs">
+          <p class="text-uppercase g-font-size-14--xs g-font-weight--700 g-color--primary g-letter-spacing--2 g-margin-b-25--xs">Categories</p>
+          <h2 class="g-font-size-32--xs g-font-size-36--md g-letter-spacing--1 g-color--dark">Choose a campaign from your favourite category</h2>
+      </div>
+      <div class="row g-margin-b-30--xs g-margin-b-30--md">
+
+        <div class="col-sm-4 g-margin-b-50--xs">
+                <!-- Media -->
+                <div class="clearfix">
+                    <div class="g-media g-width-60--xs">
+                        <div class="wow fadeInUp" data-wow-duration=".3" data-wow-delay=".8s">
+                           <i class="g-font-size-28--xs g-color--primary material-icons">grain</i>
+                        </div>
+                    </div>
+                    <div class="g-media__body g-padding-x-20--xs">
+                        <h3 class="g-font-size-18--xs g-margin-b-10--xs">Covid</h3>
+                        <p class="g-margin-b-0--xs g-font-size-13--xs">Brilliantly hand drawn and then rendered into digital art.</p>
+                    </div>
+                </div>
+                <!-- End Media -->
+            </div>
+        <div class="col-sm-4 g-margin-b-50--xs">
+          <!-- Media -->
+          <div class="clearfix">
+              <div class="g-media g-width-60--xs">
+                  <div class="wow fadeInUp" data-wow-duration=".3" data-wow-delay=".8s">
+                      <i class="g-font-size-28--xs g-color--primary material-icons">pets</i>
+                  </div>
+              </div>
+              <div class="g-media__body g-padding-x-20--xs">
+                  <h3 class="g-font-size-18--xs g-margin-b-10--xs">Animal</h3>
+                  <p class="g-margin-b-0--xs g-font-size-13--xs">Many types of birds, cats, sharks, dinos and butterfly designs.</p>
+              </div>
+          </div>
+          <!-- End Media -->
+        </div>
+        <div class="col-sm-4 g-margin-b-50--xs">
+          <!-- Media -->
+          <div class="clearfix">
+              <div class="g-media g-width-60--xs">
+                  <div class="wow fadeInUp" data-wow-duration=".3" data-wow-delay=".8s">
+                      <i class="g-font-size-28--xs g-color--primary material-icons">child_care</i>
+                  </div>
+              </div>
+              <div class="g-media__body g-padding-x-20--xs">
+                  <h3 class="g-font-size-18--xs g-margin-b-10--xs">Child</h3>
+                  <p class="g-margin-b-0--xs g-font-size-13--xs">These are original characters that star in their own movie, comic book, or cartoon.</p>
+              </div>
+          </div>
+          <!-- End Media -->
+        </div>
+          <div class="col-sm-4 g-margin-b-50--xs">
+              <!-- Media -->
+              <div class="clearfix">
+                  <div class="g-media g-width-60--xs">
+                      <div class="wow fadeInUp" data-wow-duration=".3" data-wow-delay=".8s">
+                          <i class="g-font-size-28--xs g-color--primary material-icons">books</i>
+                      </div>
+                  </div>
+                  <div class="g-media__body g-padding-x-20--xs">
+                      <h3 class="g-font-size-18--xs g-margin-b-10--xs">Education</h3>
+                      <p class="g-margin-b-0--xs g-font-size-13--xs">Check out some great tributes, parodies, and mash ups.</p>
+                  </div>
+              </div>
+              <!-- End Media -->
+          </div>
+        <div class="col-sm-4 g-margin-b-50--xs">
+              <!-- Media -->
+              <div class="clearfix">
+                  <div class="g-media g-width-60--xs">
+                      <div class="wow fadeInUp" data-wow-duration=".3" data-wow-delay=".8s">
+                          <i class="g-font-size-28--xs g-color--primary material-icons">elderly</i>
+                      </div>
+                  </div>
+                  <div class="g-media__body g-padding-x-20--xs">
+                      <h3 class="g-font-size-18--xs g-margin-b-10--xs">Elderly</h3>
+                      <p class="g-margin-b-0--xs g-font-size-13--xs">Look out for the rock the shades, headphones, and music.</p>
+                  </div>
+              </div>
+              <!-- End Media -->
+          </div>
+        <div class="col-sm-4 g-margin-b-50--xs">
+              <!-- Media -->
+              <div class="clearfix">
+                  <div class="g-media g-width-60--xs">
+                      <div class="wow fadeInUp" data-wow-duration=".3" data-wow-delay=".8s">
+                          <i class="g-font-size-28--xs g-color--primary material-icons">gavel</i>
+                      </div>
+                  </div>
+                  <div class="g-media__body g-padding-x-20--xs">
+                      <h3 class="g-font-size-18--xs g-margin-b-10--xs">Disaster Relief</h3>
+                      <p class="g-margin-b-0--xs g-font-size-13--xs">All the funny print over the internet. But are they really funny?</p>
+                  </div>
+              </div>
+              <!-- End Media -->
+          </div>
+
+            <div class="col-sm-4 g-margin-b-50--xs">
+                <!-- Media -->
+                <div class="clearfix">
+                    <div class="g-media g-width-60--xs">
+                        <div class="wow fadeInUp" data-wow-duration=".3" data-wow-delay=".8s">
+                            <i class="g-font-size-28--xs g-color--primary material-icons">no_food</i>
+                        </div>
+                    </div>
+                    <div class="g-media__body g-padding-x-20--xs">
+                        <h3 class="g-font-size-18--xs g-margin-b-10--xs">Hunger</h3>
+                        <p class="g-margin-b-0--xs g-font-size-13--xs">Are you a Mario, Zelda, or Pokemon fanatic?</p>
+                    </div>
+                </div>
+                <!-- End Media -->
+            </div>
+            <div class="col-sm-4 g-margin-b-50--xs">
+                <!-- Media -->
+                <div class="clearfix">
+                    <div class="g-media g-width-60--xs">
+                        <div class="wow fadeInUp" data-wow-duration=".3" data-wow-delay=".8s">
+                            <i class="g-font-size-28--xs g-color--primary material-icons">pregnant_woman</i>
+                        </div>
+                    </div>
+                    <div class="g-media__body g-padding-x-20--xs">
+                        <h3 class="g-font-size-18--xs g-margin-b-10--xs">Women</h3>
+                        <p class="g-margin-b-0--xs g-font-size-13--xs">Less about the academics and more about the culture of the extreme hobbyist.</p>
+                    </div>
+                </div>
+                <!-- End Media -->
+            </div>
+            <div class="col-sm-4 g-margin-b-50--xs">
+                <!-- Media -->
+                <div class="clearfix">
+                    <div class="g-media g-width-60--xs">
+                        <div class="wow fadeInUp" data-wow-duration=".3" data-wow-delay=".8s">
+                           <i class="g-font-size-28--xs g-color--primary material-icons">roofing</i>
+                        </div>
+                    </div>
+                    <div class="g-media__body g-padding-x-20--xs">
+                        <h3 class="g-font-size-18--xs g-margin-b-10--xs">Farmers</h3>
+                        <p class="g-margin-b-0--xs g-font-size-13--xs">Brilliantly hand drawn and then rendered into digital art.</p>
+                    </div>
+                </div>
+                <!-- End Media -->
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="g-bg-color--primary-ltr">
+    <div class="g-container--sm g-text-center--xs g-padding-y-80--xs g-padding-y-125--xsm">
+        <div class="g-margin-b-60--xs">
+            <p class="text-uppercase g-font-size-14--xs g-font-weight--700 g-color--white-opacity g-letter-spacing--2 g-margin-b-25--xs">Subscribe</p>
+            <h2 class="g-font-size-32--xs g-font-size-36--md g-letter-spacing--1 g-color--white">Become a part of our committee</h2>
+            <p class="g-color--white">I would like to receive the regular Helpkart newsletter about the new campaigns and impact we are making by helping the society. You can unsubscribe at any time by clicking on the unsubscribe link. Don’t worry, we don’t spam!</p>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
+                <app-subscribe></app-subscribe>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,10 @@
+{
+	"auth": {
+		"donoreshop95e1b7f3": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [],
+			"customAuth": false
+		}
+	}
+}

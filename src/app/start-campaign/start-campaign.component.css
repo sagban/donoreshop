@@ -1,0 +1,21 @@
+.sell{
+  background: url(../../public/img/1920x1080/02.jpg);
+  background-position: 0%;
+  background-size: cover;
+}
+.have_account{
+  cursor: pointer;
+}
+
+
+@media (max-width: 900px) {
+  .sell{
+      background-position: 50%;
+  }
+  .sell h1{
+    color: white !important;
+  }
+  .sell p{
+    color: white !important;
+  }
+}

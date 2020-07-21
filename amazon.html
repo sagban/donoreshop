@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<header>
+
+</header>
+
+<body>
+<form method="GET" action="https://www.amazon.com/gp/aws/cart/add.html">
+    <input type="hidden" name="AWSAccessKeyId" value="Access Key ID" /><br/>
+    <input type="hidden" name="AssociateTag" value="Associate Tag" /><br/>
+    <p>One Product<br/>
+        <iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0"
+                src="https://ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ss&ref=as_ss_li_til&ad_type=product_link&tracking_id=stupo-20&language=en_US&marketplace=amazon&region=US&placement=B07TYWBSW6&asins=B07TYWBSW6&linkId=de4d5785a8bbc7f5c16f701f4cd01ec1&show_border=true&link_opens_in_new_window=true">
+        </iframe>
+        <input type="hidden" name="ASIN.1" value="B07TYWBSW6"/><br/>
+        Quantity:<input type="text" name="Quantity.1"/><br/>
+
+        <p>Another Product<br/>
+       <input type="hidden" name="ASIN.2" value="B002WCN14Q"/><br/>
+    <iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ss&ref=as_ss_li_til&ad_type=product_link&tracking_id=stupo-20&language=en_US&marketplace=amazon&region=US&placement=B002WCN14Q&asins=B002WCN14Q&linkId=afd8de8d2c1cabf5fc3b536a721aaea8&show_border=true&link_opens_in_new_window=true"></iframe>
+
+        Quantity:<input type="text" name="Quantity.2"/><br/>
+    </p>
+    <input type="submit" name="add" value="add" />
+
+</form>
+</body>
+</html>
+ 

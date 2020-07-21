@@ -2,7 +2,7 @@ from django.core import serializers
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from rest_framework.decorators import api_view
-
+import requests
 
 # Create your views here.
 from django.views.decorators.csrf import csrf_protect, csrf_exempt
@@ -36,3 +36,20 @@ def getEvent(request, eventId):
         response = serializers.serialize("json",response)
         # return HttpResponse(response)
         return JsonResponse(response, safe=False)
+
+def getProducts(request):
+
+    url = "https://amazon-data.p.rapidapi.com/search.php"
+
+    querystring = {"region":"us","page":"1","keyword":"stationery"}
+
+    headers = {
+        'x-rapidapi-host': "amazon-data.p.rapidapi.com",
+        'x-rapidapi-key': "0bb3e3d122mshdd5d886bd1d569ep116e79jsn91f195fa41a0"
+    }
+
+    response = requests.request("GET", url, headers=headers, params=querystring)
+
+    print(response.text)
+    print(request)
+    return HttpResponse(response.text)

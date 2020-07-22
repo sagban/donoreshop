@@ -32,9 +32,13 @@ class Event(models.Model):
         eventObj.description = event['description']
         eventObj.size = event['size']
         eventObj.ngo = event['ngo']
+        eventObj.target_date = event['target_date']
+        eventObj.creation_date = event['creation_date']
 
         return eventObj
 
+    def natural_key(self):
+        return (self.id)
 
     id = models.AutoField(primary_key=True, null=False)
     name = models.fields.TextField()

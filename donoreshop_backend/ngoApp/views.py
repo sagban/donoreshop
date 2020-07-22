@@ -29,13 +29,6 @@ def createEvent(request):
         response = eventObj.save()
         return HttpResponse(response)
 
-@csrf_protect
-@csrf_exempt
-@api_view(['GET', 'POST'])
-def getEvent(request, eventId):
-    if request.method == 'GET':
-        response = Event.objects.filter(id=eventId)
-        return format_response(response)
 
 
 def getProducts(request):
@@ -110,16 +103,27 @@ def create_button_get_url(request):
     URI = URI + "&add=add"
     print(URI)
 
-# @csrf_protect
-# @csrf_exempt
-# @api_view(['GET', 'POST'])
-# def getNgoEvents(request, ngoId):
-#     if request.method == 'GET':
-#         response = Event.objects.filter(ngo__id=ngoId)
-#         response = EventSerializer(response, many=True).data
-#         return Response(response)
-#         # return format_response(response)
-#
+@csrf_protect
+@csrf_exempt
+@api_view(['GET', 'POST'])
+def getNgoEvents(request, ngoId):
+    if request.method == 'GET':
+        response = Event.objects.filter(ngo__id=ngoId)
+        response = EventSerializer(response, many=True).data
+        return Response(response)
+        # return format_response(response)
+
+
+@csrf_protect
+@csrf_exempt
+@api_view(['GET', 'POST'])
+def getEvent(request, eventId):
+    if request.method == 'GET':
+        response = Event.objects.filter(id=eventId)
+        response = EventSerializer(response, many=True).data
+
+        return Response(response)
+
 #
 # def format_response(data):
 #     serialized  = serializers.serialize(data)

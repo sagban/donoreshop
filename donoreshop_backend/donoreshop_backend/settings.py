@@ -25,8 +25,7 @@ SECRET_KEY = 'moj&=2a$rb0ahz!3fcfz2cxt@w)z@##@l89n5rh0*pj!zf3t)y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-]
+ALLOWED_HOSTS = ['92e1b2cac8ad.ngrok.io']
 
 
 # Application definition
@@ -57,7 +56,9 @@ ROOT_URLCONF = 'donoreshop_backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR ,'')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -71,24 +72,27 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'donoreshop_backend.wsgi.application'
-
+#
+# SERIALIZATION_MODULES = {
+#     'json': 'wadofstuff_django_serializers.django.serializers.json'
+# }
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    # },
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'donazondb',
-        'USER': 'admin',
-        'PASSWORD': 'donazonadmin',
-        'HOST': 'donazon-db.ctnggdnccxxr.us-east-2.rds.amazonaws.com',
-        'PORT': '3306',
-    }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    },
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'donazondb',
+    #     'USER': 'admin',
+    #     'PASSWORD': 'donazonadmin',
+    #     'HOST': 'donazon-db.ctnggdnccxxr.us-east-2.rds.amazonaws.com',
+    #     'PORT': '3306',
+    # }
 }
 
 

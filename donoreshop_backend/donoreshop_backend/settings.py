@@ -29,6 +29,13 @@ ALLOWED_HOSTS = ['92e1b2cac8ad.ngrok.io',
 
 # Application definition
 
+CORS_ORIGIN_ALLOW_ALL = True # If this is used then `CORS_ORIGIN_WHITELIST` will not have any effect
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_WHITELIST = [
+  'http://localhost:'
+] # If this is used then `CORS_ORIGIN_WHITELIST` will not have any effect
+
+
 INSTALLED_APPS = [
   'django.contrib.admin',
   'django.contrib.auth',
@@ -81,6 +88,9 @@ WSGI_APPLICATION = 'donoreshop_backend.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+AUTHENTICATION_BACKENDS = (
+  'django.contrib.auth.backends.ModelBackend',
+)
 
 DATABASES = {
   'default': {
@@ -94,6 +104,9 @@ DATABASES = {
   #     'PASSWORD': 'donazonadmin',
   #     'HOST': 'donazon-db.ctnggdnccxxr.us-east-2.rds.amazonaws.com',
   #     'PORT': '3306',
+  #     'OPTIONS': {
+  #       'init_command': 'SET default_storage_engine=INNODB',
+  #     }
   # }
 }
 

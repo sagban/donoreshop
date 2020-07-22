@@ -31,7 +31,7 @@ class Donor(models.Model):
         return donorObj
 
     id = models.AutoField(primary_key=True, null=False)
-    name = models.fields.TextField(blank=True)
+    name = models.fields.TextField(blank=True, max_length=50)
     email = models.fields.EmailField(blank=True)
     phone = models.fields.TextField(blank=True)
     age = models.fields.IntegerField(blank=True, null=True)

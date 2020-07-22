@@ -1,6 +1,5 @@
 from django.http import HttpResponse
 
-
 # Create your views here.
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_protect, csrf_exempt
@@ -15,15 +14,16 @@ def home(request):
     print(request)
     return HttpResponse(request)
 
+
 @csrf_protect
 @csrf_exempt
 @api_view(['GET', 'POST'])
 def cart(request):
     if request.method == 'POST':
         cart = request.data
+        print(cart)
 
         if True:
-
 
             donorObj = Donor.objects.filter(id=cart["donor"]).first()
             eventObj = Event.objects.filter(id=cart["event"]).first()
@@ -38,22 +38,27 @@ def cart(request):
 
             amountDonated = 0
 
-            #create relations
+            # create relations
             for relation in cart["products"]:
                 relation["cart"] = cartObj
                 relation["productDonated"] = Product.objects.filter(id=relation["productDonated"]).first()
-                relation["productRequired"] = EventProduct.objects.filter(id=relation["productRequired"]).first()
+
+                eventObj = EventProduct.objects.filter(id=relation["productRequired"]).first()
+                relation["productRequired"] = eventObj
+
                 relationObj = CartProductRelation.create(relation)
                 relationObj.save()
                 amountDonated += relation["quantity"] * relation["perProductPrice"]
 
+                print(eventObj.remaining_quantity)
+                eventObj.remaining_quantity = eventObj.remaining_quantity - relation["quantity"]
+                eventObj.save()
+                print(eventObj.remaining_quantity)
 
             cartObj.amountDonated = amountDonated
             cartObj.save()
 
-
-            context = {'amount': amountDonated}
-            return render(request, 'button.html', context)
+            return HttpResponse(amountDonated)
 
 
 @csrf_protect
@@ -64,7 +69,6 @@ def getCart(request, cartId):
         donorCartObj = Cart.objects.filter(id=cartId).first()
         amountToPay = donorCartObj.amountDonated
         return render(request, "amazon.html")
-
 
 
 @csrf_protect

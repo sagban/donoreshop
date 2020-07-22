@@ -14,9 +14,10 @@ from rest_framework.response import Response
 
 @csrf_protect
 @csrf_exempt
-@api_view(['GET', 'POST'])
+@api_view(['GET', 'POST', 'OPTIONS'])
 def createEvent(request):
     if request.method == 'POST':
+        print(request)
         event = request.data
         event["ngo"] = Ngo.objects.filter(id=event["ngo"]).first()
         eventObj = Event.create(event)
@@ -24,7 +25,6 @@ def createEvent(request):
         eventObj.save()
         return HttpResponse(eventObj.id)
 
-@csrf_protect
 @csrf_exempt
 @api_view(['GET', 'POST'])
 def getProducts(request, queryString):
@@ -115,14 +115,14 @@ def markOrderAsDelivered(request, eventCartId):
 
 
 
-
-@csrf_protect
-@csrf_exempt
-@api_view(['GET', 'POST'])
-def getNgoEvents(request, ngoId):
-    if request.method == 'GET':
-        response = Event.objects.filter(ngo__id=ngoId)
-        format_response(response)
+#
+# @csrf_protect
+# @csrf_exempt
+# @api_view(['GET', 'POST'])
+# def getNgoEvents(request, ngoId):
+#     if request.method == 'GET':
+#         response = Event.objects.filter(ngo__id=ngoId)
+#         format_response(response)
 
 
 def format_response(data):

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CartService} from '../_services/cart.service';
 import {AuthenticationService} from '../_services/authentication.service';
-
+import Auth from '@aws-amplify/auth';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -12,8 +12,10 @@ export class HeaderComponent implements OnInit {
   session:boolean=false;
   public cartListLength: number;
   constructor(private authenticationService: AuthenticationService, public cartService: CartService) {
-    this.authenticationService.getSessionEmitter.subscribe(value=>{
-      this.changeSession(value);
+    Auth.currentAuthenticatedUser().then(()=>{
+      this.changeSession(true);
+    }).catch(()=>{
+      this.changeSession(false);
     });
     this.cartService.getCartEmitter.subscribe(res=>{
       if(res){

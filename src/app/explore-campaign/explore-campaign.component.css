@@ -1,0 +1,182 @@
+.store-container{
+  padding: 0;
+}
+.border-b {
+    border-bottom: 0.0625rem solid #d5e2e6;
+}
+.border-t {
+    border-top: 0.0625rem solid #d5e2e6;
+}
+.border-l {
+    border-left: 0.0625rem solid #d5e2e6;
+}
+.border-r {
+    border-right: 0.0625rem solid #d5e2e6;
+}
+
+.filter .heading{
+  height: 60px;
+  display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+
+.store-section{
+  width: 100%;
+  display: block;
+}
+.left-section{
+  position: sticky;
+  left: 0;
+  width: 100%;
+  align-self: flex-start
+}
+.right-section{
+  position: relative;
+  width: 100%
+}
+
+.sorting{
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.sorting .heading{
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 2.125rem;
+  width: 16rem;
+  border: 0.0625rem solid #d5e2e6;
+  text-transform: uppercase;
+  padding: 0 1.25rem 0 0.5rem;
+  transition-duration: 300ms;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.7, 1, 0.7, 1);
+  margin-right: 40px;
+  cursor: pointer;
+}
+
+.sorting-list{
+  background: #fff;
+  box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.2);
+  display: block;
+  position: absolute;
+  width: 16rem;
+  top: 48px;
+  z-index: 1;
+  text-decoration: none;
+  list-style: none;
+  height: auto;
+  right: 40px;
+}
+.sorting-list li{
+  cursor: pointer;
+}
+.sorting-list li:hover{
+  background: #fafafa;
+}
+.vCheckboxField{
+  background: #8b1014;
+  margin-right: 10px;
+}
+
+
+@media(max-width: 600px){
+  .row{
+    margin: 0!important;
+  }
+  .left-section{
+    position: absolute;
+    /*z-index: 0;*/
+    background: #fff;
+    height: auto;
+    overflow: auto;
+    border-top: 0.0625rem solid #d5e2e6;
+  }
+
+
+  .left-section .filter-list{
+    position: relative;
+    background: white;
+    z-index: 2;
+    display: flex;
+    width: 100%;
+    overflow-x: scroll ;
+    box-shadow: 0 10px 10px 0 rgba(0,0,0,0.2);
+
+
+  }
+  .left-section .heading{
+    width: 50%;
+    cursor: pointer;
+    z-index: 2;
+    position: relative;
+    border-right: 0.0625rem solid #d5e2e6;
+  }
+  .categories, .price, .color, .color, .discount, .ratings{
+    min-width: 150px;
+    border-top: 0 solid #d5e2e6;
+  }
+
+  .right-section{
+
+  }
+  .sorting{
+    width:50%;
+    position: relative;
+    left: 50%;
+  }
+  .sorting .heading{
+    width: 100%;
+    height: 60px;
+    margin: 0;
+    border: 0px;
+  }
+  .sorting .sub-heading{
+    display: none;
+  }
+  .sorting-list{
+      width: 200%;
+      top: 61px;
+      right: 0;
+  }
+}
+@media(min-width: 600px){
+  .store-section{
+    display: flex;
+  }
+
+  .left-section{
+    width: 30% !important;
+    padding-right: 15px !important;
+  }
+  .right-section{
+    width: 70% !important;
+    padding-right: 15px !important;
+  }
+}
+
+
+@media(min-width: 900px){
+  .left-section{
+    width: 25%!important;
+  }
+  .right-section{
+    width: 75%!important;
+  }
+}
+
+@media(min-width: 1200px){
+  .left-section{
+    width: 20%!important;
+  }
+  .right-section{
+    width: 80%!important;
+  }
+}
+

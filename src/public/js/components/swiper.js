@@ -50,16 +50,16 @@ $(window).load(function(){
   var swiper = new Swiper('.js__swiper-news', {
     pagination: '.js__swiper-pagination',
     paginationClickable: true,
-    slidesPerView: 3,
+    slidesPerView: 2,
     spaceBetween: 30,
     loop: false,
     breakpoints: {
       1024: {
-        slidesPerView: 3,
+        slidesPerView: 2,
         spaceBetween: 30
       },
       992: {
-        slidesPerView: 3,
+        slidesPerView: 2,
         spaceBetween: 30
       },
       768: {

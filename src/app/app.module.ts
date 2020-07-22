@@ -19,6 +19,18 @@ import { StartCampaignComponent } from './start-campaign/start-campaign.componen
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
+import {AmplifyUIAngularModule} from '@aws-amplify/ui-angular';
+import { SignupComponent } from './signup/signup.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { CampaignComponent } from './campaign/campaign.component';
+import { CampaignCardComponent } from './campaign-card/campaign-card.component';
+import { ProductComponent } from './campaign/product/product.component';
+import { ReviewComponent } from './campaign/review/review.component';
+import { UpdateComponent } from './campaign/update/update.component';
+import { CartComponent } from './cart/cart.component';
+import { CartItemComponent } from './cart-item/cart-item.component';
+import { ExploreCampaignComponent } from './explore-campaign/explore-campaign.component';
+import {NotificationModule} from './notification/notification.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +43,17 @@ import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
     SubscribeComponent,
     StartCampaignComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    SignupComponent,
+    ForgotPasswordComponent,
+    CampaignComponent,
+    CampaignCardComponent,
+    ProductComponent,
+    ReviewComponent,
+    UpdateComponent,
+    CartComponent,
+    CartItemComponent,
+    ExploreCampaignComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -40,7 +62,7 @@ import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
     ShareButtonsModule,
     FormsModule,
     ReactiveFormsModule,
-    // NotificationModule,
+    NotificationModule,
     // CheckoutModule,
     DashboardModule,
     AmplifyAngularModule,

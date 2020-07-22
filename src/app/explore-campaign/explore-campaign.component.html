@@ -1,0 +1,104 @@
+<app-header></app-header>
+<div class="store-container">
+  <div class="row g-padding-x-40--xs g-padding-x-55--sm g-font-size-14--xs" style="padding-top: 5.5rem;">Home / <strong>explore</strong></div>
+  <div class="row g-padding-x-40--xs g-padding-x-55--sm g-padding-y-0--xs g-font-size-14--xs"><strong>Campaigns</strong> - 200 items</div>
+
+
+  <div class="store-section g-margin-t-20--xs g-margin-t-0--sm">
+    <div class="left-section filter" >
+      <div (click)="toogleFilterList()" class="filter heading g-padding-x-25--xs g-padding-x-40--xs g-font-size-14--xs g-font-size-16--sm">
+        FILTERS <i class="material-icons g-padding-x-5--xs">tune</i>
+      </div>
+      <section class="filter-list g-padding-x-15--xs g-padding-x-0--sm" *ngIf="filterListShown">
+        <div class="filter categories border-t g-padding-x-15--xs g-padding-x-40--sm g-padding-y-25--xs g-padding-y-10--sm">
+          <div class="g-font-size-15--xs g-font-weight--600 text-uppercase g-margin-b-10--sm">Categories</div>
+          <ul class="list-unstyled">
+            <li class="g-color--dark g-font-size-13--xs g-margin-b-5--sm" *ngFor="let category of categories">
+              <input class="vCheckboxField" type="checkbox" [checked]="category.checked" (change)="updateFilter($event, 'category',category?.code)" value="{{category?.code}}">{{category?.name}}<span class="g-color--gray g-font-size-13--xs">(29)</span>
+            </li>
+          </ul>
+        </div>
+        <!--<div class="filter color g-padding-x-15&#45;&#45;xs g-padding-x-40&#45;&#45;sm g-padding-y-25&#45;&#45;xs g-padding-y-10&#45;&#45;sm border-t">-->
+          <!--<span class="g-font-size-15&#45;&#45;xs g-font-weight&#45;&#45;600 text-uppercase">Color</span>-->
+          <!--<ul class="list-unstyled">-->
+            <!--<li class="g-color&#45;&#45;dark g-font-size-13&#45;&#45;xs g-margin-b-5&#45;&#45;sm" *ngFor="let color of colors">-->
+              <!--<input class="vCheckboxField" type="checkbox" [checked]="color.checked" (change)="updateFilter($event, 'color',color?.code)" value="{{color?.code}}">{{color?.name}}<span class="g-color&#45;&#45;gray g-font-size-13&#45;&#45;xs"> (39)</span>-->
+            <!--</li>-->
+          <!--</ul>-->
+        <!--</div>-->
+      </section>
+    </div>
+    <div class="right-section">
+      <div class="sorting row">
+          <div class="heading g-padding-x-25--xs g-padding-x-40--xs g-font-size-14--xs g-font-size-16--sm" (click)="toogleSortList()">
+            SORT<i class="material-icons g-padding-x-5--xs">sort</i><span class="g-font-size-12--xs g-padding-x-5--xs sub-heading">{{default_sort}}</span>
+          </div>
+          <ul class="sorting-list g-padding-y-10--xs g-padding-x-20--xs" *ngIf="sortListShown">
+            <li (click)="updateSort('latest')" class="g-padding-x-5--xs g-color--dark g-font-size-14--xs g-padding-y-5--xs">{{sortList.latest}}</li>
+            <li (click)="updateSort('price_asc')" class="g-padding-x-5--xs g-color--dark g-font-size-14--xs g-padding-y-5--xs">{{sortList.price_asc}}</li>
+            <li (click)="updateSort('price_dsc')" class="g-padding-x-5--xs g-color--dark g-font-size-14--xs g-padding-y-5--xs">{{sortList.price_dsc}}</li>
+            <li (click)="updateSort('popular')" class="g-padding-x-5--xs g-color--dark g-font-size-14--xs g-padding-y-5--xs">{{sortList.popular}}</li>
+          </ul>
+      </div>
+      <div class="row products border-t border-l g-padding-x-15--xs g-padding-y-15--xs">
+        <div class="col-xs-6 col-md-4 col-lg-4 g-padding-y-15--xs g-padding-x-5--xs g-padding-x-15--md">
+          <a href="/campaign/donatekart/{{replaceSpace('feed the poor')}}/123/details">
+                    <app-campaign-card
+                      title="feed the poor"
+                      ngo="Donatekart"
+                      status="70%"
+                      timeLeft="2 days"
+                      rating="2"
+                      products="400"
+                      backers="222"
+                      image="https://dkprodimages.gumlet.io/DWL1104_Cover.png?format=webp&q=70&w=750&dpr=1.0">
+                    </app-campaign-card>
+                  </a>
+        </div>
+        <div class="col-xs-6 col-md-4 col-lg-4 g-padding-y-15--xs g-padding-x-5--xs g-padding-x-15--md">
+          <a href="/campaign/donatekart/{{replaceSpace('feed the poor')}}/123/details">
+                    <app-campaign-card
+                      title="feed the poor"
+                      ngo="Donatekart"
+                      status="70%"
+                      timeLeft="2 days"
+                      rating="2"
+                      products="400"
+                      backers="222"
+                      image="https://dkprodimages.gumlet.io/DWL1104_Cover.png?format=webp&q=70&w=750&dpr=1.0">
+                    </app-campaign-card>
+                  </a>
+        </div>
+        <div class="col-xs-6 col-md-4 col-lg-4 g-padding-y-15--xs g-padding-x-5--xs g-padding-x-15--md">
+          <a href="/campaign/donatekart/{{replaceSpace('feed the poor')}}/123/details">
+                    <app-campaign-card
+                      title="feed the poor"
+                      ngo="Donatekart"
+                      status="70%"
+                      timeLeft="2 days"
+                      rating="2"
+                      products="400"
+                      backers="222"
+                      image="https://dkprodimages.gumlet.io/DWL1104_Cover.png?format=webp&q=70&w=750&dpr=1.0">
+                    </app-campaign-card>
+                  </a>
+        </div>
+        <div class="col-xs-6 col-md-4 col-lg-4 g-padding-y-15--xs g-padding-x-5--xs g-padding-x-15--md">
+          <a href="/campaign/donatekart/{{replaceSpace('feed the poor')}}/123/details">
+                    <app-campaign-card
+                      title="feed the poor"
+                      ngo="Donatekart"
+                      status="70%"
+                      timeLeft="2 days"
+                      rating="2"
+                      products="400"
+                      backers="222"
+                      image="https://dkprodimages.gumlet.io/DWL1104_Cover.png?format=webp&q=70&w=750&dpr=1.0">
+                    </app-campaign-card>
+                  </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

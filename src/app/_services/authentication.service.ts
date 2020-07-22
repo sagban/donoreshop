@@ -8,35 +8,18 @@ import { CognitoUser } from 'amazon-cognito-identity-js';
 
 export interface NewUser {
   email: string,
-  phone: string,
-  password: string,
-  firstName: string,
-  lastName: string
+  password: string
 };
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  public _getSession: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(JSON.parse(localStorage.getItem('session')));
-  public getSessionEmitter: Observable<boolean> = this._getSession.asObservable();
-
-  public _getVerified: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(JSON.parse(localStorage.getItem('verified')));
-  public getVerifiedEmitter: Observable<boolean> = this._getVerified.asObservable();
-  public _getVerifiedEmail: BehaviorSubject<string> = new BehaviorSubject<string>(localStorage.getItem('verifiedEmail'));
-  public getVerifiedEmailEmitter: Observable<string> = this._getVerifiedEmail.asObservable();
-  public _getVerifiedUserName: BehaviorSubject<string> = new BehaviorSubject<string>(localStorage.getItem('verifiedUserName'));
-  public getVerifiedUserNameEmitter: Observable<string> = this._getVerifiedUserName.asObservable();
-  session:boolean;
   base: any = environment.apiUrl;
   public loggedIn: boolean;
   private _authState: Subject<CognitoUser|any> = new Subject<CognitoUser|any>();
   authState: Observable<CognitoUser|any> = this._authState.asObservable();
 
-  public static SIGN_IN = 'signIn';
-  public static SIGN_OUT = 'signOut';
-  public static FACEBOOK = CognitoHostedUIIdentityProvider.Facebook;
-  public static GOOGLE = CognitoHostedUIIdentityProvider.Google;
 
   constructor(private http: HttpClient) {
     Hub.listen('auth',(data) => {
@@ -47,43 +30,18 @@ export class AuthenticationService {
     });
   }
 
-  checkSession(): any {
-    const url = this.base + '/check';
-    return this.http.get(url, {
-      withCredentials: true  // <=========== important!
-    });
-  }
 
-  getSession(){
-    return this._getSession.value;
-  }
-  getVerified(){
-    return this._getVerified.value;
-  }
-  getUserName(){
-    return this._getVerifiedUserName.value;
-  }
-
-  logout(): any {
-    const url = this.base + '/logout';
-    return this.http.get(url, {
-      withCredentials: true  // <=========== important!
-    });
-  }
-  signUp(user: NewUser): Promise<CognitoUser|any> {
+  public signUp(user: NewUser): Promise<CognitoUser|any> {
     return Auth.signUp({
       "username": user.email,
       "password": user.password,
       "attributes": {
-        "email": user.email,
-        "given_name": user.firstName,
-        "family_name": user.lastName,
-        "phone_number": user.phone
+        "email": user.email
       }
     });
   }
 
-  signIn(username: string, password: string):Promise<CognitoUser|any> {
+  public signIn(username: string, password: string):Promise<CognitoUser|any> {
     return new Promise((resolve,reject) => {
       Auth.signIn(username,password)
       .then((user: CognitoUser|any) => {
@@ -93,15 +51,9 @@ export class AuthenticationService {
     });
   }
 
-  signOut(): Promise<any> {
+  public signOut(): Promise<any> {
     return Auth.signOut()
       .then(() => this.loggedIn = false)
-  }
-
-  socialSignIn(provider:CognitoHostedUIIdentityProvider): Promise<ICredentials> {
-    return Auth.federatedSignIn({
-      'provider': provider
-    });
   }
 
 }

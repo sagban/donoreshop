@@ -20,6 +20,8 @@
     "@angular/platform-browser": "~10.0.4",
     "@angular/platform-browser-dynamic": "~10.0.4",
     "@angular/router": "~10.0.4",
+    "@aws-amplify/ui": "^2.0.2",
+    "@aws-amplify/ui-angular": "^0.2.11",
     "@fortawesome/angular-fontawesome": "^0.7.0",
     "@fortawesome/fontawesome-common-types": "^0.2.30",
     "@fortawesome/fontawesome-svg-core": "^1.2.30",

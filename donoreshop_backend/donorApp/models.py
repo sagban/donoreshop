@@ -35,6 +35,7 @@ class Cart(models.Model):
     amountDonated = models.fields.FloatField(blank=True)
     amountUsed = models.fields.FloatField(blank=True)
     status = models.fields.CharField(max_length=20, choices=STATUS.choices)
+    bill = models.fields.URLField(null=True)
 
 
 class CartProductRelation(models.Model):

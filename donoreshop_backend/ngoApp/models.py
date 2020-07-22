@@ -48,8 +48,8 @@ class Event(models.Model):
 class Product(models.Model):
     id = models.AutoField(primary_key=True, null=False)
     name = models.fields.TextField()
-    asin = models.fields.URLField()
-    url = models.fields.TextField(null=False)
+    asin = models.fields.TextField()
+    # url = models.fields.TextField(null=False)
 
 
 

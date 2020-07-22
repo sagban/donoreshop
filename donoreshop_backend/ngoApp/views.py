@@ -1,3 +1,5 @@
+import json
+
 from django.core import serializers
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
@@ -55,15 +57,55 @@ def getProducts(request):
 def createCart(request, eventId):
     if request.method == 'GET':
         #a = Cart.objects.all()
+
         carts = Cart.objects.filter(status = Cart.STATUS.INITIATED, event__id = eventId)
         #return  HttpResponse(carts)
         requiredProducts = CartProductRelation.objects.filter(cart__event__id = eventId, cart__status = Cart.STATUS.INITIATED)
-        response = requiredProducts.values('productDonated','productDonated__asin').annotate(Sum('quantity'))
+        product_quantities = requiredProducts.values('productDonated__asin').annotate(Sum('quantity'))
+        #product_quantities.
         event = Event.objects.filter(id = eventId).first()
         eventCart = EventCart.objects.create(status = EventCart.STATUS.INITIATED, event = event)
+        uri = create_button_get_url(list(product_quantities))
+        response = {"eventCart":eventCart.id, "product_quantities":list(product_quantities),"uri":uri}
 
         carts.update(eventCart = eventCart)
-        return HttpResponse(response)
+
+        return HttpResponse(json.dumps(response))
+
+@csrf_protect
+@csrf_exempt
+@api_view(['GET', 'POST'])
+def markCartAsPlaced(request, eventCartId):
+    print("mark ")
+    if request.method == 'POST':
+        #a = Cart.objects.all()
+        eventCartData = request.data
+        eventcart = EventCart.objects.filter(id = eventCartId)
+        eventcart.update(status = EventCart.STATUS.PLACED,total_bill = eventCartData["totalBill"], expexcted_delivery_date = eventCartData["expected_delivery_date"], amazon_order_id = eventCartData["amazon_order_id"],bill = eventCartData["bill"])
+
+        donorCarts = Cart.objects.filter(eventCart__id = eventCartId )
+        donorCarts.update(status = Cart.STATUS.PLACED)
+        donorCarts.update(bill = eventCartData["bill"])
+
+        return HttpResponse("1")@csrf_protect
+
+
+@csrf_exempt
+@api_view(['GET', 'POST'])
+def markOrderAsDelivered(request, eventCartId):
+    print("mark ")
+    if request.method == 'GET':
+        #a = Cart.objects.all()
+        eventCartData = request.data
+        eventcart = EventCart.objects.filter(id = eventCartId)
+        eventcart.update(status = EventCart.STATUS.DELIVERED)
+
+        donorCarts = Cart.objects.filter(eventCart__id = eventCartId )
+        donorCarts.update(status = Cart.STATUS.DELIVERED)
+
+        return HttpResponse("1")
+
+
 
 
 
@@ -83,25 +125,12 @@ def format_response(data):
     )
 
 
-@csrf_protect
-@csrf_exempt
-@api_view(['GET', 'POST'])
-def create_button_get_url(request):
-    URI = "https://www.amazon.com/gp/aws/cart/add.html?AWSAccessKeyId=Access+Key+ID&AssociateTag=Associate+Tag"
-    products = [
-        {
-            "asin": "B07TYWBSW6",
-            "quantity": "3"
-        },
-        {
-            "asin": "B07K8VDB2C",
-            "quantity": "5"
-        }
-    ]
 
-    for index, product in enumerate(products): URI = "%s&ASIN.%s=%s&Quantity.%s=%s" % (URI,index,product["asin"],index,product["quantity"])
+def create_button_get_url(products):
+    URI = "https://www.amazon.com/gp/aws/cart/add.html?AWSAccessKeyId=Access+Key+ID&AssociateTag=Associate+Tag"
+    for index, product in enumerate(products): URI = "%s&ASIN.%s=%s&Quantity.%s=%s" % (URI,index,product["productDonated__asin"],index,product["quantity__sum"])
     URI = URI + "&add=add"
-    print(URI)
+    return  URI
 
 @csrf_protect
 @csrf_exempt

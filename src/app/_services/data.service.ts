@@ -20,6 +20,11 @@ export class DataService {
     return this.http.get(url, {params: {}// <=========== important!
     });
   }
+  getCampaignByID(event):any{
+    const url = this.base + '/ngo/event/'+event;
+    return this.http.get(url, {params: {}// <=========== important!
+    });
+  }
 
 
   getDesignerProfile(data):any {
@@ -37,12 +42,6 @@ export class DataService {
   }
   getProductFeatured():any{
     const url = this.base + '/product_featured';
-    return this.http.get(url, {
-      withCredentials: true  // <=========== important!
-    });
-  }
-  getProductById(id):any{
-    const url = this.base + '/product_by_id/' + id;
     return this.http.get(url, {
       withCredentials: true  // <=========== important!
     });

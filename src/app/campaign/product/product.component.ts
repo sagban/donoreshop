@@ -12,13 +12,13 @@ export class ProductComponent implements OnInit {
   @Input() id: string;
   @Input() title: string;
   @Input() price: string;
-  @Input() status: string;
-  @Input() obtained: string;
-  @Input() donors: string;
   @Input() needed: string;
+  @Input() remaining: string;
+  @Input() in_stock: string;
   @Input() image: string;
   @Input() campaignId: string;
   qty:number = 1;
+  status:number;
   _id:string;
   public buttonTxt: string = "Add To Cart";
   constructor(public cartService: CartService,
@@ -27,7 +27,8 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._id = this.id+this.campaignId
+    this._id = this.id+this.campaignId;
+    this.status = (parseInt(this.needed)  - parseInt(this.remaining)) / parseInt(this.needed);
   }
   public addToCart(){
     if(this.buttonTxt === 'Add To Cart'){
@@ -37,10 +38,10 @@ export class ProductComponent implements OnInit {
         title: this.title,
         price: parseFloat(this.price),
         image: this.image,
-        donors: this.donors,
+        in_stock: this.in_stock,
         needed: this.needed,
         status: this.status,
-        obtained: this.obtained,
+        remaining: this.remaining,
         qty: this.qty
       };
       this.cartService.addItem(item, this.id, this.campaignId);

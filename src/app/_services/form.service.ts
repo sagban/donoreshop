@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 
 @Injectable({
@@ -11,7 +11,12 @@ export class FormService {
   constructor(private http: HttpClient) { }
 
   addCampaign(data: any): any {
-    const url = this.base + '/ngo/event';
-    return this.http.post(url, {data: data});
+    const url = this.base + '/ngo/event/';
+    let headers = new HttpHeaders();
+    headers.set('Access-Control-Allow-Origin',' *');
+    headers.set('Access-Control-Allow-Methods',' GET, POST, PATCH, PUT, DELETE, OPTIONS');
+    headers.set('Access-Control-Allow-Headers',' Origin')
+    headers.set('Content-Type',' X-Auth-Token')
+    return this.http.post(url, {data: data}, {headers: headers} );
   }
 }

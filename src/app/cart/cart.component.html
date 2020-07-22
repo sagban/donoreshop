@@ -1,1 +1,117 @@
-<p>cart works!</p>
+<app-header></app-header>
+<div class="container emptycart g-fullheight--xs g-padding-y-125--xs" *ngIf="cartList && cartList.length < 1">
+  <div class="emptycart-body">
+    <img src="../../public/img/empty-bag.png" alt="">
+    <h4 class="g-font-size-20--xs g-color--dark g-margin-b-0--xs">Hey, It feels so light</h4>
+    <p class="g-font-size-13--xs">There is nothing in your bag. Let's add some items.</p>
+    <a href="/explore_campaign" class="text-uppercase btn-block s-btn s-btn--md s-btn--dark-brd g-radius--50 g-padding-x-50--xs g-margin-b-20--xs">Add Items</a>
+    </div>
+</div>
+
+<div class="container g-padding-y-125--xs" *ngIf="cartList.length > 0">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-1">
+      <div class="clearfix box-item g-padding-x-20--xs g-padding-y-10--xs g-padding-y-15--sm g-margin-t-10--xs g-margin-t-30--sm">
+          <div class="g-media__body box-item-body body-right">
+            <div class="box-item-info">
+              <div class="g-font-size-13--xs g-font-weight--600 g-color--dark g-margin-b-0--xs">
+                <i class="ti-gift g-font-size-16--xs g-margin-r-10--xs"></i>Campaign Details
+              </div>
+            </div>
+            <div class="box-item-edit edit-right" data-toggle="collapse" data-target="#demo" type="button">
+              <span class="g-font-size-15--xs g-margin-r-5--xs ti-angle-down"></span>
+            </div>
+          </div>
+        <ul id="demo" class="collapse">
+          <li class="g-font-size-11--xs g-font-weight--300">10% discount on SBI debit cards. TCA</li>
+          <li class="g-font-size-11--xs g-font-weight--300">10% discount on ICICI debit cards. TCA</li>
+          <li class="g-font-size-11--xs g-font-weight--300">10% discount on HDFC debit cards. TCA</li>
+          <li class="g-font-size-11--xs g-font-weight--300">10% discount on Paytm. TCA</li>
+        </ul>
+      </div>
+
+      <!--Cart-->
+      <div class="cart g-margin-t-10--xs g-margin-t-30--sm">
+        <div class="g-margin-b-10--xs g-font-size-18--xs g-font-size-15--md cart-heading">
+          <div class="cart-heading-l">My shopping cart <span class="items">[{{cartQty}} Items]</span></div>
+          <div class="cart-heading-r price">Total: Rs. {{cartPrice}}</div>
+        </div>
+        <div class="cart-items">
+          <app-cart-item *ngFor="let item of cartList"
+                         id="{{item?.id}}"
+                         title="{{item?.title}}"
+                         price="{{item?.price}}"
+                         image="{{item?.image}}"
+                         needed="{{item?.size}}"
+                         obtained="{{item?.obtained}}"
+                         status="{{item?.status}}"
+                         donors="{{item?.donors}}"
+                         campaignId="{{campaignId}}"
+                         qty="{{item?.qty}}">
+          </app-cart-item>
+        </div>
+      </div>
+      <!--Cart-->
+      <div class="clearfix box-item g-padding-x-20--xs g-padding-y-10--xs g-padding-y-15--sm">
+        <a class="g-color--dark" href="/store">
+          <div class="g-media__body box-item-body body-right">
+            <div class="box-item-info">
+              <p class="g-font-size-13--xs g-font-weight--600 g-color--dark g-margin-b-0--xs">
+                <i class="ti-download g-font-size-16--xs g-margin-r-10--xs"></i>Add More From Store
+              </p>
+            </div>
+            <div class="box-item-edit edit-right">
+              <span class="g-font-size-13--xs ti-angle-right"></span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="cart-details g-margin-t-40--xs g-margin-t-30--sm">
+        <h4 class="g-font-size-14--xs g-bg-color--body text-uppercase">Price Details</h4>
+        <div class="price-breakup">
+          <div class="price-row g-margin-b-10--xs">
+            <span class="price-breakup-key g-font-size-12--xs">Cart Total</span>
+            <span class="price-breakup-value g-font-size-12--xs">Rs. {{cartPrice}}</span>
+          </div>
+          <div class="price-row g-margin-b-10--xs">
+            <span class="price-breakup-key g-font-size-12--xs">Tax</span>
+            <span class="price-breakup-value g-font-size-12--xs">Rs. {{tax}}</span>
+          </div>
+          <div class="price-row border-b g-margin-t-15--xs g-margin-b-20--xs"></div>
+          <div class="price-row g-margin-b-10--xs g-font-weight--600 ">
+            <span class="price-breakup-key g-font-size-14--xs">Total</span>
+            <span class="price-breakup-value g-font-size-14--xs">Rs. {{totalPrice}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="center-block cart-checkout g-margin-t-40--xs g-margin-t-20--md  g-margin-t-10--md g-padding-x-20--xs g-padding-x-30--md g-text-center--xs g-bg-color--white g-padding-y-15--xs">
+        <button *ngIf="cartSaved == true" class="cart-checkout-btn text-uppercase btn-block s-btn s-btn--md s-btn--primary-brd g-radius--50 g-padding-x-20--xs g-padding-x-50--md"
+          data-ap-widget-type="expressPaymentButton"
+          data-ap-signature="kc8Wtjb0FkRLAi4flmEhkPhZF7PZSCd%2FxfgmhzmwZAg%3D"
+          data-ap-seller-id="A1JAGVPSRC7EDZ"
+          data-ap-access-key="AKIAJFIJ3UJFPA3YPPYQ"
+          data-ap-lwa-client-id="amzn1.application-oa2-client.3bd25b31db5141c280f7073485451c0d"
+          data-ap-return-url="http://studentportal.vnit.ac.in/"
+
+          data-ap-cancel-return-url="http://studentportal.vnit.ac.in/"
+
+          data-ap-currency-code="USD"
+          data-ap-amount="12"
+          data-ap-note=""
+          data-ap-shipping-address-required="true"
+          data-ap-payment-action="Authorize"
+        >
+          Pay Now <img height="20" src="https://s3.amazonaws.com/dream-encode.site.wordpress.uploads.bucket/content/uploads/2017/06/10141818/rsz_logo_pay-primary-fullcolor-positive.png" alt="">
+        </button>
+          <button *ngIf="cartSaved == false" (click)="sendCart()" class="cart-checkout-btn text-uppercase btn-block s-btn s-btn--md s-btn--primary-bg g-radius--50 g-padding-x-20--xs g-padding-x-50--md">
+            <span class="cart-checkout-items g-text-left--xs">{{cartQty}} Items</span>
+            <span class="cart-checkout-name g-text-center--xs">Checkout</span>
+            <span class="cart-checkout-price g-text-right--xs">[Rs. {{cartPrice}}]</span>
+          </button>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

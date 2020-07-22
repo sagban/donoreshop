@@ -1,1 +1,130 @@
-<p>dashboard-add-campaign works!</p>
+<div class="g-bg-color--white">
+    <div class="g-container">
+        <div class="g-margin-b-20--xs">
+            <h2 class="g-font-size-32--xs g-font-size-36--md g-text-center--xs g-text-left--sm g-letter-spacing--1 g-color--dark">Add Campaign</h2>
+        </div>
+        <div class="row g-margin-t-30--xs g-margin-t-20--sm">
+            <div class="col-xs-12 col-sm-7 col-lg-7 g-hor-centered-row__col">
+              <div class="wow fadeInUp center-block g-bg-color--white g-box-shadow__dark-lightest-v2 g-padding-x-40--xs g-padding-y-20--xs g-radius--4" data-wow-duration=".3" data-wow-delay=".1s">
+
+                <form [formGroup]="addCampaignForm" class="g-margin-t-20--xs">
+                  <p class="g-font-size-16--xs text-uppercase g-color--primary g-font-weight--600">Basic Info</p>
+                  <div class="row g-margin-t-10--xs">
+                    <div class=" col-md-12 g-margin-b-20--xs">
+                      <input type="text" class="form-control s-form-v4__input shipping-input" formControlName="name" placeholder="* Campaign name">
+                      <div *ngIf="f.name?.invalid && (f.name?.dirty || f.name?.touched)">
+                        <div *ngIf="f.name.errors?.required" class="g-color--primary g-font-size-10--xs">
+                          name is required.
+                        </div>
+                        <div *ngIf="f.name.errors?.pattern" class="g-color--primary g-font-size-10--xs">
+                          Invalid format. Numbers and special characters are not allowed.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 g-margin-b-20--xs g-margin-t-10--xs">
+                      <textarea type="text" class="form-control s-form-v4__input shipping-input" formControlName="description" placeholder="* Description"></textarea>
+                      <div *ngIf="f.description?.invalid && (f.description?.dirty || f.description?.touched)">
+                        <div *ngIf="f.description.errors?.required" class="g-color--primary g-font-size-10--xs">
+                          Description is required.
+                        </div>
+                        <div *ngIf="f.description.errors?.pattern" class="g-color--primary g-font-size-10--xs">
+                          Invalid format. Numbers and special characters are not allowed.
+                        </div>
+                        <div *ngIf="f.description.errors?.minlength" class="g-color--primary g-font-size-10--xs">
+                          Minimum length is 15 characters.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 g-margin-b-20--xs">
+                      <div class="g-padding-x-15--xs text-uppercase g-font-size-13--xs g-letter-spacing--1 g-padding-y-5--xs g-text-left--xs g-color--dark-light g-font-size-12--xs g-font-weight--300">* Image</div>
+                      <input type="file" required class="form-control s-form-v4__input shipping-input" formControlName="image" placeholder="* Image">
+                      <div *ngIf="f.image?.invalid && (f.image?.dirty || f.image.touched)">
+                        <div *ngIf="f.image.errors?.required" class="g-color--primary g-font-size-10--xs">
+                         Image is required.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class=" col-md-6 g-margin-b-20--xs">
+                      <input type="number" class="form-control s-form-v4__input shipping-input" formControlName="size" placeholder="* Nos Affected">
+                      <div *ngIf="f.size.invalid && (f.size?.dirty || f.size?.touched)">
+                        <div *ngIf="f.size.errors?.required" class="g-color--primary g-font-size-10--xs">
+                          Size is required.
+                        </div>
+                        <div *ngIf="f.size.errors?.pattern" class="g-color--primary g-font-size-10--xs">
+                          Invalid format.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6 g-margin-b-20--xs">
+                      <input type="text" class="form-control s-form-v4__input shipping-input" formControlName="target_date" placeholder="* End Date">
+                      <div *ngIf="f.target_date?.invalid && (f.target_date?.dirty || f.target_date?.touched)">
+                        <div *ngIf="f.target_date.errors?.required" class="g-color--primary g-font-size-10--xs">
+                          Target date is required.
+                        </div>
+                        <div *ngIf="f.target_date.errors?.pattern" class="g-color--primary g-font-size-10--xs">
+                          YYYY-MM-DD required
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </form>
+                  <p class="g-font-size-16--xs text-uppercase g-color--primary g-font-weight--600">Add Products</p>
+                  <div class="row">
+                    <div class="col-md-12 g-margin-b-20--xs">
+                      <input (keyup)="searchProducts($event)" type="text" class="form-control s-form-v4__input shipping-input" placeholder="* Add Products">
+
+                      <div *ngIf="showList == true" class="row g-box-shadow__dark-lightest-v2">
+                        <div class="g-padding-y-10--xs g-padding-x-10--xs product-overflow">
+                          <div *ngIf="results.length > 0">
+                            <div  *ngFor="let res of results; let i = index" class="clearfix cart-item g-margin-b-20--xs">
+                                <div class="g-media g-width-100--xs">
+                                    <div class="wow fadeInUp" data-wow-duration=".3" data-wow-delay=".8s">
+                                      <img src="{{res.image_url}}" alt="image" width="100%">
+                                    </div>
+                                </div>
+                                <div class="g-media__body g-padding-x-20--xs cart-item-body g-padding-y-10--xs g-padding-y-15--sm">
+                                  <div class="g-margin-b-5--xs cart-item-info">
+                                    <p class="text-uppercase g-font-size-13--xs g-font-size-14--sm g-font-weight--300 g-color--dark g-margin-b-0--xs">{{res.asin_name}}</p>
+                                    <form [formGroup] = "buyForm" (ngSubmit)="addProduct(i)">
+                                      <input type="text" class="form-control s-form-v4__input shipping-input" formControlName="quantity" placeholder="* Quantity">
+                                      <button type="submit" class=" text-uppercase s-btn s-btn--xs s-btn--white-bg s-btn--dark-bg g-font-size-12--xs">Add</button>
+                                    </form>
+                                  </div>
+                                  <div class="cart-item-price">
+                                    <p class="g-font-size-13--xs g-margin-b-0--xs g-font-weight--400 g-color--primary">{{res.asin_cuurency}} {{res.asin_price}}</p>
+                                  </div>
+                                </div>
+                            </div>
+                          </div>
+                          <div *ngIf="results.length == 0">No products found!</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="g-margin-t-10--xs" *ngIf="products.length > 0">
+                      <div *ngFor="let p of products; let i = index" class="clearfix cart-item g-margin-b-20--xs g-padding-y-10--xs g-padding-x-10--xs">
+                        <p class="g-font-size-14--xs g-margin-b-5--xs g-color--dark">Product: <span class="g-color--primary">{{p.asin}}</span></p>
+                        <p class="g-font-size-12--xs g-margin-b-0--x g-color--dark">Quantity: {{p.quantity}}</p>
+                        <div class="g-font-size-12--xs" (click)="removeProduct(i)">Remove</div>
+                      </div>
+                    </div>
+                    <div class="g-text-center--xs g-margin-t-30--xs">
+                        <button (click)="onSubmit()" [disabled]="addCampaignForm.invalid" class="text-uppercase s-btn s-btn--sm s-btn--white-bg s-btn--dark-bg g-font-size-12--xs g-radius--50 g-padding-x-50--xs g-margin-b-20--xs">Submit</button>
+                    </div>
+                    {{message}}
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+

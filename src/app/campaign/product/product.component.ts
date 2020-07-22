@@ -17,6 +17,7 @@ export class ProductComponent implements OnInit {
   @Input() donors: string;
   @Input() needed: string;
   @Input() image: string;
+  @Input() campaignId: string;
   qty:number = 1;
   _id:string;
   public buttonTxt: string = "Add To Cart";
@@ -26,7 +27,7 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._id = this.id
+    this._id = this.id+this.campaignId
   }
   public addToCart(){
     if(this.buttonTxt === 'Add To Cart'){
@@ -34,15 +35,17 @@ export class ProductComponent implements OnInit {
       const item = {
         id: this.id,
         title: this.title,
-        price: this.price,
+        price: parseFloat(this.price),
         image: this.image,
+        donors: this.donors,
+        needed: this.needed,
         status: this.status,
         obtained: this.obtained,
         qty: this.qty
       };
-      this.cartService.addItem(item, this.id);
-      this.showSuccessNotification('Added To Bag');
-      this.buttonTxt = 'Go To Bag';
+      this.cartService.addItem(item, this.id, this.campaignId);
+      this.showSuccessNotification('Added To Cart');
+      this.buttonTxt = 'Go To Cart';
     }
     else{
       window.location.href = '/cart';
@@ -55,14 +58,14 @@ export class ProductComponent implements OnInit {
 
   inc(){
     if(this.qty <10){
-      this.cartService.incQty(this._id);
+      // this.cartService.incQty(this._id);
       this.qty +=1;
     }
 
   }
   dec(){
     if(this.qty > 1){
-      this.cartService.decQty(this._id);
+      // this.cartService.decQty(this._id);
       this.qty -=1;
     }
   }

@@ -7,6 +7,7 @@ import {StartCampaignComponent} from './start-campaign/start-campaign.component'
 import {UnauthGuard} from './_guard/unauth.guard';
 import {CampaignComponent} from './campaign/campaign.component';
 import {ExploreCampaignComponent} from './explore-campaign/explore-campaign.component';
+import {CartComponent} from './cart/cart.component';
 
 const routes: Routes = [
   { path : '', component: HomeComponent},
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path : 'start_campaign', component: StartCampaignComponent, canActivate:[UnauthGuard]},
   { path : 'explore_campaign', component: ExploreCampaignComponent},
   { path : 'campaign/:ngo/:title/:id/details', component: CampaignComponent},
+  { path: "cart", component: CartComponent},
   { path: '404', component: NotFoundComponent},
   { path: '**', redirectTo: '/404'}
 

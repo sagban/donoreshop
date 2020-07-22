@@ -10,6 +10,18 @@ export class DataService {
   base: any = environment.apiUrl;
   constructor(private http: HttpClient) { }
 
+  getAWSProducts(data):any{
+    const url = this.base + '/ngo/products/'+data;
+    return this.http.get(url, {params: {}// <=========== important!
+    });
+  }
+  getAllCampaigns():any{
+    const url = this.base + '/ngo/events/1';
+    return this.http.get(url, {params: {}// <=========== important!
+    });
+  }
+
+
   getDesignerProfile(data):any {
     const url = this.base + '/designer_profile';
     return this.http.get(url, {params: {username: data},

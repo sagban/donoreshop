@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {DataService} from '../../_services/data.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-campaign-card',
@@ -17,7 +18,7 @@ export class DashboardCampaignCardComponent implements OnInit {
   @Input() image: string;
   daysLeft:number;
 
-  constructor(private dataService: DataService){
+  constructor(private dataService: DataService, private router: Router){
 
   }
   ngOnInit() {
@@ -26,7 +27,9 @@ export class DashboardCampaignCardComponent implements OnInit {
   }
   getUrl(){
     this.dataService.getCartUrl(this.id).subscribe(res=>{
-      console.log(res);
+      console.log(res.uri);
+      window.location.href = res.uri;
+
     })
   }
 

@@ -10,8 +10,8 @@ export class FormService {
   base: any = environment.apiUrl;
   constructor(private http: HttpClient) { }
 
-  login(data: any): any {
-    const url = this.base + '/login';
+  addCampaign(data: any): any {
+    const url = this.base + '/event';
     return this.http.post(url, {data: data}, {
       withCredentials: true  // <=========== important!
     });

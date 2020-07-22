@@ -40,7 +40,7 @@
               "src/public/vendor/swiper/swiper.jquery.min.js",
               "src/public/vendor/jquery.parallax.min.js",
               "src/public/js/global.min.js",
-              "src/public/js/components/swiper.js"
+              "src/public/js/components/swiper.js",
             ]
           },
           "configurations": {

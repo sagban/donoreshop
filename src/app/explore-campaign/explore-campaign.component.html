@@ -13,8 +13,29 @@
         <div class="filter categories border-t g-padding-x-15--xs g-padding-x-40--sm g-padding-y-25--xs g-padding-y-10--sm">
           <div class="g-font-size-15--xs g-font-weight--600 text-uppercase g-margin-b-10--sm">Categories</div>
           <ul class="list-unstyled">
-            <li class="g-color--dark g-font-size-13--xs g-margin-b-5--sm" *ngFor="let category of categories">
-              <input class="vCheckboxField" type="checkbox" [checked]="category.checked" (change)="updateFilter($event, 'category',category?.code)" value="{{category?.code}}">{{category?.name}}<span class="g-color--gray g-font-size-13--xs">(29)</span>
+            <!--<li class="g-color&#45;&#45;dark g-font-size-13&#45;&#45;xs g-margin-b-5&#45;&#45;sm" *ngFor="let category of categories">-->
+              <!--<input class="vCheckboxField" type="checkbox" [checked]="category.checked" (change)="updateFilter($event, 'category',category?.code)" value="{{category?.code}}">{{category?.name}}-->
+              <!--<span class="g-color&#45;&#45;gray g-font-size-13&#45;&#45;xs">(29)</span>-->
+            <!--</li>-->
+            <li class="g-color--dark g-font-size-13--xs g-margin-b-5--sm">
+              <input class="vCheckboxField" type="checkbox" [checked]="" (change)="updateFilter($event, 'category',category?.code)" value="1">
+              Animal
+              <span class="g-color--gray g-font-size-13--xs">(29)</span>
+            </li>
+            <li class="g-color--dark g-font-size-13--xs g-margin-b-5--sm">
+              <input class="vCheckboxField" type="checkbox" [checked]="" (change)="updateFilter($event, 'category',category?.code)" value="1">
+              Child
+              <span class="g-color--gray g-font-size-13--xs">(29)</span>
+            </li>
+            <li class="g-color--dark g-font-size-13--xs g-margin-b-5--sm">
+              <input class="vCheckboxField" type="checkbox" [checked]="" (change)="updateFilter($event, 'category',category?.code)" value="1">
+              Disaster
+              <span class="g-color--gray g-font-size-13--xs">(29)</span>
+            </li>
+            <li class="g-color--dark g-font-size-13--xs g-margin-b-5--sm">
+              <input class="vCheckboxField" type="checkbox" [checked]="" (change)="updateFilter($event, 'category',category?.code)" value="1">
+              Women
+              <span class="g-color--gray g-font-size-13--xs">(29)</span>
             </li>
           </ul>
         </div>
@@ -35,13 +56,13 @@
           </div>
           <ul class="sorting-list g-padding-y-10--xs g-padding-x-20--xs" *ngIf="sortListShown">
             <li (click)="updateSort('latest')" class="g-padding-x-5--xs g-color--dark g-font-size-14--xs g-padding-y-5--xs">{{sortList.latest}}</li>
-            <li (click)="updateSort('price_asc')" class="g-padding-x-5--xs g-color--dark g-font-size-14--xs g-padding-y-5--xs">{{sortList.price_asc}}</li>
-            <li (click)="updateSort('price_dsc')" class="g-padding-x-5--xs g-color--dark g-font-size-14--xs g-padding-y-5--xs">{{sortList.price_dsc}}</li>
+            <li (click)="updateSort('price_asc')" class="g-padding-x-5--xs g-color--dark g-font-size-14--xs g-padding-y-5--xs">{{sortList.donor_asc}}</li>
+            <li (click)="updateSort('price_dsc')" class="g-padding-x-5--xs g-color--dark g-font-size-14--xs g-padding-y-5--xs">{{sortList.donor_dsc}}</li>
             <li (click)="updateSort('popular')" class="g-padding-x-5--xs g-color--dark g-font-size-14--xs g-padding-y-5--xs">{{sortList.popular}}</li>
           </ul>
       </div>
       <div class="row products border-t border-l g-padding-x-15--xs g-padding-y-15--xs">
-        <div class="col-xs-6 col-md-4 col-lg-4 g-padding-y-15--xs g-padding-x-5--xs g-padding-x-15--md">
+        <div class="col-xs-12 col-md-4 col-lg-4 g-padding-y-15--xs g-padding-x-5--xs g-padding-x-15--md">
           <a href="/campaign/donatekart/{{replaceSpace('feed the poor')}}/123/details">
                     <app-campaign-card
                       title="feed the poor"
@@ -55,7 +76,7 @@
                     </app-campaign-card>
                   </a>
         </div>
-        <div class="col-xs-6 col-md-4 col-lg-4 g-padding-y-15--xs g-padding-x-5--xs g-padding-x-15--md">
+        <div class="col-xs-12 col-md-4 col-lg-4 g-padding-y-15--xs g-padding-x-5--xs g-padding-x-15--md">
           <a href="/campaign/donatekart/{{replaceSpace('feed the poor')}}/123/details">
                     <app-campaign-card
                       title="feed the poor"
@@ -69,7 +90,7 @@
                     </app-campaign-card>
                   </a>
         </div>
-        <div class="col-xs-6 col-md-4 col-lg-4 g-padding-y-15--xs g-padding-x-5--xs g-padding-x-15--md">
+        <div class="col-xs-12 col-md-4 col-lg-4 g-padding-y-15--xs g-padding-x-5--xs g-padding-x-15--md">
           <a href="/campaign/donatekart/{{replaceSpace('feed the poor')}}/123/details">
                     <app-campaign-card
                       title="feed the poor"
@@ -83,7 +104,7 @@
                     </app-campaign-card>
                   </a>
         </div>
-        <div class="col-xs-6 col-md-4 col-lg-4 g-padding-y-15--xs g-padding-x-5--xs g-padding-x-15--md">
+        <div class="col-xs-12 col-md-4 col-lg-4 g-padding-y-15--xs g-padding-x-5--xs g-padding-x-15--md">
           <a href="/campaign/donatekart/{{replaceSpace('feed the poor')}}/123/details">
                     <app-campaign-card
                       title="feed the poor"

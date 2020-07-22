@@ -1,8 +1,9 @@
 import datetime
 
 from django.db import models
-
 # Create your models here.
+
+from datetime import datetime
 
 
 
@@ -32,8 +33,7 @@ class Event(models.Model):
         eventObj.description = event['description']
         eventObj.size = event['size']
         eventObj.ngo = event['ngo']
-        eventObj.target_date = event['target_date']
-        eventObj.creation_date = event['creation_date']
+        eventObj.target_date = datetime.strptime(event['target_date'], "%Y-%m-%d").date()
 
         return eventObj
 
@@ -52,9 +52,31 @@ class Event(models.Model):
 class Product(models.Model):
     id = models.AutoField(primary_key=True, null=False)
     name = models.fields.TextField()
-    asin = models.fields.TextField()
-    # url = models.fields.TextField(null=False)
+    asin = models.fields.TextField(null=False)
+    asin_name = models.fields.TextField(null=True)
+    asin_currency = models.fields.TextField(default="USD")
+    asin_price = models.fields.TextField()
+    in_stock = models.fields.BooleanField()
+    is_prime = models.fields.BooleanField()
+    image_url = models.fields.URLField()
+    rating = models.fields.FloatField()
+    total_review = models.fields.IntegerField()
 
+    @classmethod
+    def create(cls, product):
+        productObj = Product()
+        productObj.name = product['name']
+        productObj.asin = product['asin']
+        productObj.asin_name = product['asin_name']
+        productObj.asin_currency = product['asin_currency']
+        productObj.asin_price = product['asin_price']
+        productObj.in_stock = product['in_stock']
+        productObj.is_prime = product['is_prime']
+        productObj.image_url = product['image_url']
+        productObj.rating = product['rating']
+        productObj.total_review = product['total_review']
+
+        return productObj
 
 
 class EventProduct(models.Model):
@@ -82,7 +104,7 @@ class EventCart(models.Model):
     status = models.fields.CharField(max_length= 20, choices= STATUS.choices)
     event = event = models.ForeignKey(Event, on_delete=models.CASCADE)
     total_bill = models.fields.FloatField(null=True)
-    expexcted_delivery_date = models.fields.DateField(default=datetime.datetime.now, blank=True,null= True)
+    expexcted_delivery_date = models.fields.DateField(default=datetime.now, blank=True,null= True)
     amazon_order_id = models.fields.TextField(null = True)
     bill = models.fields.URLField(null = True)
 

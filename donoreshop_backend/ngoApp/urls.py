@@ -19,7 +19,6 @@ from django.urls import path
 from ngoApp import views
 
 urlpatterns = [
-    path('home/', views.home, name='home'),
     path('products/', views.getProducts, name='getProducts'),
     path('event/', views.createEvent, name='createEvent'),
     path('event/<int:eventId>', views.getEvent, name='getEvent'),

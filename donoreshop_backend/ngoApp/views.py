@@ -1,22 +1,15 @@
 import json
 
-from django.core import serializers
-from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render
-from rest_framework.decorators import api_view
 import requests
-
+from django.core import serializers
+from django.db.models import Sum
+from django.http import HttpResponse
 # Create your views here.
 from django.views.decorators.csrf import csrf_protect, csrf_exempt
-
-from ngoApp.models import *
 from donorApp.models import *
-from django.db.models import Sum, F
-
-
-def home(request):
-    print(request)
-    return HttpResponse(request)
+from ngoApp.models import *
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 
 @csrf_protect
@@ -28,16 +21,17 @@ def createEvent(request):
         event["ngo"] = Ngo.objects.filter(id=event["ngo"]).first()
         eventObj = Event.create(event)
 
-        response = eventObj.save()
-        return HttpResponse(response)
+        eventObj.save()
+        return HttpResponse(eventObj.id)
 
-
-
+@csrf_protect
+@csrf_exempt
+@api_view(['GET', 'POST'])
 def getProducts(request):
 
     url = "https://amazon-data.p.rapidapi.com/search.php"
 
-    querystring = {"region":"us","page":"1","keyword":"stationery"}
+    querystring = {"region":"us","page":"1","keyword":"food"}
 
     headers = {
         'x-rapidapi-host': "amazon-data.p.rapidapi.com",
@@ -47,8 +41,14 @@ def getProducts(request):
     response = requests.request("GET", url, headers=headers, params=querystring)
 
     print(response.text)
-    print(request)
-    return HttpResponse(response.text)
+    print(response.type)
+
+    for product in serializers.serialize("json",response.text):
+      print(product)
+
+
+
+    return HttpResponse("1")
 
 
 @csrf_protect
@@ -87,9 +87,10 @@ def markCartAsPlaced(request, eventCartId):
         donorCarts.update(status = Cart.STATUS.PLACED)
         donorCarts.update(bill = eventCartData["bill"])
 
-        return HttpResponse("1")@csrf_protect
+        return HttpResponse("1")\
 
 
+@csrf_protect
 @csrf_exempt
 @api_view(['GET', 'POST'])
 def markOrderAsDelivered(request, eventCartId):

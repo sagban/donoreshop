@@ -33,9 +33,8 @@ def createEvent(request):
 def getEvent(request, eventId):
     if request.method == 'GET':
         response = Event.objects.filter(id=eventId)
-        response = serializers.serialize("json",response)
-        # return HttpResponse(response)
-        return JsonResponse(response, safe=False)
+        return format_response(response)
+
 
 def getProducts(request):
 
@@ -54,6 +53,7 @@ def getProducts(request):
     print(request)
     return HttpResponse(response.text)
 
+
 @csrf_protect
 @csrf_exempt
 @api_view(['GET', 'POST'])
@@ -61,9 +61,7 @@ def createCart(request,ngoId, eventId):
     if request.method == 'GET':
         #Todo
         response = Event.objects.filter(id=eventId)
-        response = serializers.serialize("json",response)
-        # return HttpResponse(response)
-        return JsonResponse(response, safe=False)
+        format_response(response)
 
 @csrf_protect
 @csrf_exempt
@@ -71,6 +69,11 @@ def createCart(request,ngoId, eventId):
 def getNgoEvents(request, ngoId):
     if request.method == 'GET':
         response = Event.objects.filter(ngo__id=ngoId)
-        response = serializers.serialize("json",response)
-        # return HttpResponse(response)
-        return JsonResponse(response, safe=False)
+        format_response(response)
+
+
+def format_response(data):
+    return HttpResponse(
+        serializers.serialize("json", data),
+        content_type="text/json-comment-filtered"
+    )

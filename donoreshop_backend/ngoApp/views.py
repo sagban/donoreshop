@@ -27,28 +27,34 @@ def createEvent(request):
 @csrf_protect
 @csrf_exempt
 @api_view(['GET', 'POST'])
-def getProducts(request):
-
+def getProducts(request, queryString):
+  if request.method == 'GET':
     url = "https://amazon-data.p.rapidapi.com/search.php"
 
-    querystring = {"region":"us","page":"1","keyword":"food"}
+    querystring = {"region": "us", "page": "1", "keyword": queryString}
 
     headers = {
-        'x-rapidapi-host': "amazon-data.p.rapidapi.com",
-        'x-rapidapi-key': "0bb3e3d122mshdd5d886bd1d569ep116e79jsn91f195fa41a0"
+      'x-rapidapi-host': "amazon-data.p.rapidapi.com",
+      'x-rapidapi-key': "0bb3e3d122mshdd5d886bd1d569ep116e79jsn91f195fa41a0"
     }
 
     response = requests.request("GET", url, headers=headers, params=querystring)
 
-    print(response.text)
-    print(response.type)
+    print(type(response.text))
+    products = json.loads(response.text)
 
-    for product in serializers.serialize("json",response.text):
+    productList = []
+
+    for product in products:
       print(product)
+      productObj = Product.create(product)
+      productObj.save()
+      product["id"] = productObj.id
+      productList.append(product)
 
+    json_format = json.dumps(productList)
 
-
-    return HttpResponse("1")
+    return HttpResponse(json_format)
 
 
 @csrf_protect
@@ -132,6 +138,7 @@ def create_button_get_url(products):
     for index, product in enumerate(products): URI = "%s&ASIN.%s=%s&Quantity.%s=%s" % (URI,index,product["productDonated__asin"],index,product["quantity__sum"])
     URI = URI + "&add=add"
     return  URI
+
 
 @csrf_protect
 @csrf_exempt

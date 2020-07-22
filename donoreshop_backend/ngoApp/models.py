@@ -85,17 +85,17 @@ class Product(models.Model):
     asin = models.fields.TextField(null=False)
     asin_name = models.fields.TextField(null=True)
     asin_currency = models.fields.TextField(default="USD")
-    asin_price = models.fields.TextField()
-    in_stock = models.fields.BooleanField()
-    is_prime = models.fields.BooleanField()
-    image_url = models.fields.URLField()
-    rating = models.fields.FloatField()
-    total_review = models.fields.IntegerField()
+    asin_price = models.fields.TextField(default=0)
+    in_stock = models.fields.BooleanField(null=True)
+    is_prime = models.fields.BooleanField(null=True)
+    image_url = models.fields.URLField(null=True)
+    rating = models.fields.FloatField(null=True)
+    total_review = models.fields.IntegerField(null=True)
 
     @classmethod
     def create(cls, product):
         productObj = Product()
-        productObj.name = product['name']
+        productObj.name = product['asin_name']
         productObj.asin = product['asin']
         productObj.asin_name = product['asin_name']
         productObj.asin_currency = product['asin_currency']

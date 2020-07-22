@@ -7,22 +7,22 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class CampaignCardComponent implements OnInit {
 
+  @Input() id: string;
   @Input() title: string;
-  @Input() ngo: string;
-  @Input() status: string;
-  @Input() timeLeft: string;
-  @Input() rating: string;
-  @Input() products: string;
-  @Input() backers: string;
+  @Input() description: string;
+  @Input() creation_date: string;
+  @Input() target_date: string;
+  @Input() sizes: string;
   @Input() image: string;
-  ratingArray:Array<number>;
+
+  daysLeft:number;
 
   constructor() {
-
   }
 
   ngOnInit() {
-    this.ratingArray =[].constructor(parseInt(this.rating));
+    this.daysLeft = Math.floor(( Date.parse(this.target_date) - Date.parse(this.creation_date) ) / 86400000);
+    console.log(this.sizes, this.creation_date)
   }
 
 }

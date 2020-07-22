@@ -59,7 +59,12 @@ export class ExploreCampaignComponent implements OnInit {
   public getCampaigns(f, s):void {
     this.dataService.getAllCampaigns().subscribe(res=>{
       console.log(res);
+      this.updateCampaigns(res);
     });
+  }
+
+  updateCampaigns(cam){
+    this.campaigns = cam;
   }
 
   public updateFilter(e, type,value):void {

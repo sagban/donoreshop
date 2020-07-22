@@ -36,7 +36,7 @@ export class CartComponent implements OnInit {
   public sendCart(){
     const data = {
       "donor": 7,
-      "event": 1,
+      "event": this.campaignId,
       "status": "INITIATED",
       "amountDonated": this.cartPrice,
       "products" :[]
@@ -52,13 +52,13 @@ export class CartComponent implements OnInit {
       };
       data.products.push(product);
     }
+    console.log(data);
     this.cartService.postCart(data).subscribe(res=>{
       console.log(res);
       if(res){
         this.amount = res;
         this.cartSaved = true;
       }
-
     });
 
 

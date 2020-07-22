@@ -62,59 +62,16 @@
           </ul>
       </div>
       <div class="row products border-t border-l g-padding-x-15--xs g-padding-y-15--xs">
-        <div class="col-xs-12 col-md-4 col-lg-4 g-padding-y-15--xs g-padding-x-5--xs g-padding-x-15--md">
-          <a href="/campaign/donatekart/{{replaceSpace('feed the poor')}}/123/details">
+        <div *ngFor="let cam of campaigns" class="col-xs-12 col-md-4 col-lg-4 g-padding-y-15--xs g-padding-x-5--xs g-padding-x-15--md">
+          <a href="/campaign/1/{{replaceSpace(cam.name)}}/{{cam.id}}/details">
                     <app-campaign-card
-                      title="feed the poor"
-                      ngo="Donatekart"
-                      status="70%"
-                      timeLeft="2 days"
-                      rating="2"
-                      products="400"
-                      backers="222"
-                      image="https://dkprodimages.gumlet.io/DWL1104_Cover.png?format=webp&q=70&w=750&dpr=1.0">
-                    </app-campaign-card>
-                  </a>
-        </div>
-        <div class="col-xs-12 col-md-4 col-lg-4 g-padding-y-15--xs g-padding-x-5--xs g-padding-x-15--md">
-          <a href="/campaign/donatekart/{{replaceSpace('feed the poor')}}/123/details">
-                    <app-campaign-card
-                      title="feed the poor"
-                      ngo="Donatekart"
-                      status="70%"
-                      timeLeft="2 days"
-                      rating="2"
-                      products="400"
-                      backers="222"
-                      image="https://dkprodimages.gumlet.io/DWL1104_Cover.png?format=webp&q=70&w=750&dpr=1.0">
-                    </app-campaign-card>
-                  </a>
-        </div>
-        <div class="col-xs-12 col-md-4 col-lg-4 g-padding-y-15--xs g-padding-x-5--xs g-padding-x-15--md">
-          <a href="/campaign/donatekart/{{replaceSpace('feed the poor')}}/123/details">
-                    <app-campaign-card
-                      title="feed the poor"
-                      ngo="Donatekart"
-                      status="70%"
-                      timeLeft="2 days"
-                      rating="2"
-                      products="400"
-                      backers="222"
-                      image="https://dkprodimages.gumlet.io/DWL1104_Cover.png?format=webp&q=70&w=750&dpr=1.0">
-                    </app-campaign-card>
-                  </a>
-        </div>
-        <div class="col-xs-12 col-md-4 col-lg-4 g-padding-y-15--xs g-padding-x-5--xs g-padding-x-15--md">
-          <a href="/campaign/donatekart/{{replaceSpace('feed the poor')}}/123/details">
-                    <app-campaign-card
-                      title="feed the poor"
-                      ngo="Donatekart"
-                      status="70%"
-                      timeLeft="2 days"
-                      rating="2"
-                      products="400"
-                      backers="222"
-                      image="https://dkprodimages.gumlet.io/DWL1104_Cover.png?format=webp&q=70&w=750&dpr=1.0">
+                      id="{{cam.id}}"
+                      title="{{cam.name}}"
+                      description="{{cam.description}}"
+                      creation_date="{{cam.creation_date}}"
+                      target_date="{{cam.target_date}}"
+                      sizes="{{cam.size}}"
+                      image="{{cam.image}}">
                     </app-campaign-card>
                   </a>
         </div>

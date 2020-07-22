@@ -53,7 +53,7 @@
       </div>
       <!--Cart-->
       <div class="clearfix box-item g-padding-x-20--xs g-padding-y-10--xs g-padding-y-15--sm">
-        <a class="g-color--dark" href="/store">
+        <a class="g-color--dark" href="/explore_campaigns">
           <div class="g-media__body box-item-body body-right">
             <div class="box-item-info">
               <p class="g-font-size-13--xs g-font-weight--600 g-color--dark g-margin-b-0--xs">
@@ -73,42 +73,44 @@
         <div class="price-breakup">
           <div class="price-row g-margin-b-10--xs">
             <span class="price-breakup-key g-font-size-12--xs">Cart Total</span>
-            <span class="price-breakup-value g-font-size-12--xs">Rs. {{cartPrice}}</span>
+            <span class="price-breakup-value g-font-size-12--xs">USD. {{cartPrice}}</span>
           </div>
           <div class="price-row g-margin-b-10--xs">
             <span class="price-breakup-key g-font-size-12--xs">Tax</span>
-            <span class="price-breakup-value g-font-size-12--xs">Rs. {{tax}}</span>
+            <span class="price-breakup-value g-font-size-12--xs">USD. {{tax}}</span>
           </div>
           <div class="price-row border-b g-margin-t-15--xs g-margin-b-20--xs"></div>
           <div class="price-row g-margin-b-10--xs g-font-weight--600 ">
             <span class="price-breakup-key g-font-size-14--xs">Total</span>
-            <span class="price-breakup-value g-font-size-14--xs">Rs. {{totalPrice}}</span>
+            <span class="price-breakup-value g-font-size-14--xs">USD. {{totalPrice}}</span>
           </div>
         </div>
       </div>
       <div class="center-block cart-checkout g-margin-t-40--xs g-margin-t-20--md  g-margin-t-10--md g-padding-x-20--xs g-padding-x-30--md g-text-center--xs g-bg-color--white g-padding-y-15--xs">
-        <button *ngIf="cartSaved == true" class="cart-checkout-btn text-uppercase btn-block s-btn s-btn--md s-btn--primary-brd g-radius--50 g-padding-x-20--xs g-padding-x-50--md"
-          data-ap-widget-type="expressPaymentButton"
-          data-ap-signature="kc8Wtjb0FkRLAi4flmEhkPhZF7PZSCd%2FxfgmhzmwZAg%3D"
-          data-ap-seller-id="A1JAGVPSRC7EDZ"
-          data-ap-access-key="AKIAJFIJ3UJFPA3YPPYQ"
-          data-ap-lwa-client-id="amzn1.application-oa2-client.3bd25b31db5141c280f7073485451c0d"
-          data-ap-return-url="http://studentportal.vnit.ac.in/"
 
-          data-ap-cancel-return-url="http://studentportal.vnit.ac.in/"
+        <div ng-class="{'active': cartSaved == true}" style="display: none">
+        <div
+            data-ap-widget-type="expressPaymentButton"
+            data-ap-signature="ggezBJtIxOGJjVUeB9aUwm74ORP98D8lTUydKVoky%2F0%3D"
+            data-ap-seller-id="A1JAGVPSRC7EDZ"
+            data-ap-access-key="AKIAJFIJ3UJFPA3YPPYQ"
+            data-ap-lwa-client-id="amzn1.application-oa2-client.f7f86c65b21b40c9935fa2b02690f16d"
+            data-ap-return-url="http://studentportal.vnit.ac.in/"
 
-          data-ap-currency-code="USD"
-          data-ap-amount="12"
-          data-ap-note=""
-          data-ap-shipping-address-required="true"
-          data-ap-payment-action="Authorize"
-        >
-          Pay Now <img height="20" src="https://s3.amazonaws.com/dream-encode.site.wordpress.uploads.bucket/content/uploads/2017/06/10141818/rsz_logo_pay-primary-fullcolor-positive.png" alt="">
-        </button>
+            data-ap-cancel-return-url="http://studentportal.vnit.ac.in/"
+
+            data-ap-currency-code="USD"
+            data-ap-amount="{{amount}}"
+            data-ap-note=""
+            data-ap-shipping-address-required="true"
+            data-ap-payment-action="AuthorizeAndCapture"
+          >
+          </div>
+          </div>
           <button *ngIf="cartSaved == false" (click)="sendCart()" class="cart-checkout-btn text-uppercase btn-block s-btn s-btn--md s-btn--primary-bg g-radius--50 g-padding-x-20--xs g-padding-x-50--md">
             <span class="cart-checkout-items g-text-left--xs">{{cartQty}} Items</span>
             <span class="cart-checkout-name g-text-center--xs">Checkout</span>
-            <span class="cart-checkout-price g-text-right--xs">[Rs. {{cartPrice}}]</span>
+            <span class="cart-checkout-price g-text-right--xs">[USD {{cartPrice}}]</span>
           </button>
       </div>
     </div>

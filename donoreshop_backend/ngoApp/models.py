@@ -27,6 +27,7 @@ class Ngo(models.Model):
     description = models.fields.TextField()
     type = models.fields.CharField(max_length= 20, choices= NGO_TYPES.choices,default= NGO_TYPES.GENERAL)
     size = models.fields.IntegerField()
+    image = models.fields.URLField(null=True)
 
 
 class NgoSerializer(serializers.ModelSerializer):
@@ -37,7 +38,10 @@ class NgoSerializer(serializers.ModelSerializer):
         fields = [
             'id',
             'name',
-            'description'
+            'description',
+            'type',
+            'size',
+            'image'
         ]
 
 

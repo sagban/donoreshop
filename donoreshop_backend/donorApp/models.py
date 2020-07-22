@@ -35,7 +35,7 @@ class Donor(models.Model):
     email = models.fields.EmailField(blank=True)
     phone = models.fields.TextField(blank=True)
     age = models.fields.IntegerField(blank=True, null=True)
-    wallet = models.ForeignKey(Wallet, on_delete=models.CASCADE)
+    wallet = models.ForeignKey(Wallet, null=True, on_delete=models.CASCADE)
 
 
 class DonorSerializer(serializers.ModelSerializer):

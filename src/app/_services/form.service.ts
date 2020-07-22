@@ -11,9 +11,7 @@ export class FormService {
   constructor(private http: HttpClient) { }
 
   addCampaign(data: any): any {
-    const url = this.base + '/event';
-    return this.http.post(url, {data: data}, {
-      withCredentials: true  // <=========== important!
-    });
+    const url = this.base + '/ngo/event';
+    return this.http.post(url, {data: data});
   }
 }

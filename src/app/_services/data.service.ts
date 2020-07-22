@@ -15,6 +15,11 @@ export class DataService {
     return this.http.get(url, {params: {}// <=========== important!
     });
   }
+  getAllCampaigns():any{
+    const url = this.base + '/ngo/events/1';
+    return this.http.get(url, {params: {}// <=========== important!
+    });
+  }
 
 
   getDesignerProfile(data):any {

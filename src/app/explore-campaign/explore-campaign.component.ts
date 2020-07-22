@@ -57,21 +57,8 @@ export class ExploreCampaignComponent implements OnInit {
   }
 
   public getCampaigns(f, s):void {
-    this.dataService.getProducts(f, s).subscribe(res=>{
-      this.campaigns = res.data.products;
-      this.campaigns.sort();
-
-      this.categories = res.data.categories;
-      this.totalItems = res.data.totalItems;
-      this.colors = res.data.colors;
-      //check
-      const f1 = JSON.parse(f);
-      this.categories.forEach(item => {
-        item["checked"] = !!f1['category'].includes(item['code']);
-      });
-      this.colors.forEach(item => {
-        item["checked"] = !!f1['color'].includes(item['code']);
-      });
+    this.dataService.getAllCampaigns().subscribe(res=>{
+      console.log(res);
     });
   }
 

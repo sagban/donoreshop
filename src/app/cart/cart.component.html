@@ -87,7 +87,7 @@
         </div>
       </div>
       <div class="center-block cart-checkout g-margin-t-40--xs g-margin-t-20--md  g-margin-t-10--md g-padding-x-20--xs g-padding-x-30--md g-text-center--xs g-bg-color--white g-padding-y-15--xs">
-        <button  class="cart-checkout-btn text-uppercase btn-block s-btn s-btn--md s-btn--primary-brd g-radius--50 g-padding-x-20--xs g-padding-x-50--md"
+        <button *ngIf="cartSaved == true" class="cart-checkout-btn text-uppercase btn-block s-btn s-btn--md s-btn--primary-brd g-radius--50 g-padding-x-20--xs g-padding-x-50--md"
           data-ap-widget-type="expressPaymentButton"
           data-ap-signature="kc8Wtjb0FkRLAi4flmEhkPhZF7PZSCd%2FxfgmhzmwZAg%3D"
           data-ap-seller-id="A1JAGVPSRC7EDZ"
@@ -98,14 +98,14 @@
           data-ap-cancel-return-url="http://studentportal.vnit.ac.in/"
 
           data-ap-currency-code="USD"
-          data-ap-amount="112"
+          data-ap-amount="12"
           data-ap-note=""
           data-ap-shipping-address-required="true"
           data-ap-payment-action="Authorize"
         >
-          Pay Now
+          Pay Now <img height="20" src="https://s3.amazonaws.com/dream-encode.site.wordpress.uploads.bucket/content/uploads/2017/06/10141818/rsz_logo_pay-primary-fullcolor-positive.png" alt="">
         </button>
-          <button (click)="sendCart()" class="cart-checkout-btn text-uppercase btn-block s-btn s-btn--md s-btn--primary-bg g-radius--50 g-padding-x-20--xs g-padding-x-50--md">
+          <button *ngIf="cartSaved == false" (click)="sendCart()" class="cart-checkout-btn text-uppercase btn-block s-btn s-btn--md s-btn--primary-bg g-radius--50 g-padding-x-20--xs g-padding-x-50--md">
             <span class="cart-checkout-items g-text-left--xs">{{cartQty}} Items</span>
             <span class="cart-checkout-name g-text-center--xs">Checkout</span>
             <span class="cart-checkout-price g-text-right--xs">[Rs. {{cartPrice}}]</span>

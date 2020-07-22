@@ -15,6 +15,7 @@ export class DashboardAddCampaignComponent implements OnInit {
   public products:Array<any> = [];
   public results:Array<any> = [];
   public showList:boolean= false;
+  public message:string;
   private debouncer;
   constructor(private fb: FormBuilder,
               private formService: FormService,
@@ -29,7 +30,6 @@ export class DashboardAddCampaignComponent implements OnInit {
       target_date: ["", [Validators.required, Validators.pattern('^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$')]],
     });
     this.buyForm = this.fb.group({
-      asin: ['', [Validators.required]],
       quantity: ['', [Validators.required]]
     });
   }
@@ -41,6 +41,7 @@ export class DashboardAddCampaignComponent implements OnInit {
     data['ngo'] = "sagarbansal099@gmail.com";
     data['products'] = this.products;
     console.log(data);
+    this.message = "Campaign Saved";
     this.formService.addCampaign(data).subscribe(res=>{
       console.log(res);
     });
@@ -48,6 +49,8 @@ export class DashboardAddCampaignComponent implements OnInit {
   public searchProducts(event){
     const inputValue = event.target.value;
     clearTimeout(this.debouncer);
+    this.results = [];
+    this.showList = false;
     this.debouncer = setTimeout(()=>{
       this.dataService.getAWSProducts(inputValue).subscribe(res=>{
         this.showList = true;
@@ -59,10 +62,12 @@ export class DashboardAddCampaignComponent implements OnInit {
     }, 1500);
 
   }
-  public addProduct(){
+  public addProduct(index){
     const product = this.buyForm.value;
-    console.log(product);
+
+    product['asin'] = this.results[index].asin;
     product['substitute'] = product.asin;
+    console.log(product);
     this.products.push(product);
     this.showList = false;
     this.results = [];

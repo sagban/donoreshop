@@ -15,6 +15,8 @@ export class CartComponent implements OnInit {
   campaignId:any;
   tax:number = 0;
   totalPrice: number;
+  cartSaved:boolean = false;
+  amount:string;
   constructor(public cartService: CartService) {
     this.cartService.getCartEmitter.subscribe(res=>{
       if(res){
@@ -52,6 +54,10 @@ export class CartComponent implements OnInit {
     }
     this.cartService.postCart(data).subscribe(res=>{
       console.log(res);
+      if(res){
+        this.amount = res;
+        this.cartSaved = true;
+      }
 
     });
 

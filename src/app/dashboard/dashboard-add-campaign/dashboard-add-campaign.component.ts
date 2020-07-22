@@ -68,7 +68,7 @@ export class DashboardAddCampaignComponent implements OnInit {
     product['id'] = this.results[index].id;
     product['asin'] = this.results[index].asin;
     product['substitute'] = product.asin;
-    product['quantity'] = this.results[index].quantity;
+    product['quantity'] = product.quantity;
     console.log(product);
     this.products.push(product);
     this.showList = false;

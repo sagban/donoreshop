@@ -27,7 +27,7 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._id = this.id+this.campaignId;
+    this._id = this.id;
     this.status = (parseInt(this.needed)  - parseInt(this.remaining)) / parseInt(this.needed);
   }
   public addToCart(){

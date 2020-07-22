@@ -76,7 +76,7 @@ def createCart(request, eventId):
         response = {"eventCart":eventCart.id, "product_quantities":list(product_quantities),"uri":uri}
 
         carts.update(eventCart = eventCart)
-        
+
         return HttpResponse(json.dumps(response))
 
 @csrf_protect
@@ -94,7 +94,25 @@ def markCartAsPlaced(request, eventCartId):
         donorCarts.update(status = Cart.STATUS.PLACED)
         donorCarts.update(bill = eventCartData["bill"])
 
+        return HttpResponse("1")@csrf_protect
+
+
+@csrf_exempt
+@api_view(['GET', 'POST'])
+def markOrderAsDelivered(request, eventCartId):
+    print("mark ")
+    if request.method == 'GET':
+        #a = Cart.objects.all()
+        eventCartData = request.data
+        eventcart = EventCart.objects.filter(id = eventCartId)
+        eventcart.update(status = EventCart.STATUS.DELIVERED)
+
+        donorCarts = Cart.objects.filter(eventCart__id = eventCartId )
+        donorCarts.update(status = Cart.STATUS.DELIVERED)
+
         return HttpResponse("1")
+
+
 
 
 

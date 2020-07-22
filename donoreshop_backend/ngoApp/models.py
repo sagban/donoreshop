@@ -6,6 +6,11 @@ from django.db import models
 from datetime import datetime
 
 
+# class NgoManager(models.Manager):
+#     def get_by_natural_key(self, name, description):
+#         return self.get(name=name, description=description)
+from rest_framework import serializers
+
 
 
 class Ngo(models.Model):
@@ -22,6 +27,18 @@ class Ngo(models.Model):
     description = models.fields.TextField()
     type = models.fields.CharField(max_length= 20, choices= NGO_TYPES.choices,default= NGO_TYPES.GENERAL)
     size = models.fields.IntegerField()
+
+
+class NgoSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(required=False)
+    class Meta:
+        model = Ngo
+        depth = 1
+        fields = [
+            'id',
+            'name',
+            'description'
+        ]
 
 
 class Event(models.Model):
@@ -44,9 +61,22 @@ class Event(models.Model):
     name = models.fields.TextField()
     description = models.fields.TextField()
     size = models.fields.IntegerField()
-    ngo = models.ForeignKey(Ngo, on_delete=models.CASCADE)
-    target_date = models.fields.DateField(default=datetime.datetime.now, blank=True)
-    creation_date = models.fields.DateField(default=datetime.datetime.now, blank=True)
+    ngo = models.ForeignKey(Ngo, related_name="ngo", on_delete=models.CASCADE)
+    target_date = models.fields.DateField(default=datetime.now, blank=True)
+    creation_date = models.fields.DateField(default=datetime.now, blank=True)
+    image = models.fields.URLField(null=True, default="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSdYNZmQOxOoowAKZbOYTjxAU5d_pA52JxWgg&usqp=CAU")
+
+class EventSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(required=True)
+    class Meta:
+        fields = [
+            'id',
+            'name',
+            'description',
+            # 'ngo'
+        ]
+        model = Event
+        depth = 1
 
 
 class Product(models.Model):

@@ -88,3 +88,42 @@ def format_response(data):
         serializers.serialize("json", data),
         content_type="text/json-comment-filtered"
     )
+
+
+@csrf_protect
+@csrf_exempt
+@api_view(['GET', 'POST'])
+def create_button_get_url(request):
+    URI = "https://www.amazon.com/gp/aws/cart/add.html?AWSAccessKeyId=Access+Key+ID&AssociateTag=Associate+Tag"
+    products = [
+        {
+            "asin": "B07TYWBSW6",
+            "quantity": "3"
+        },
+        {
+            "asin": "B07K8VDB2C",
+            "quantity": "5"
+        }
+    ]
+
+    for index, product in enumerate(products): URI = "%s&ASIN.%s=%s&Quantity.%s=%s" % (URI,index,product["asin"],index,product["quantity"])
+    URI = URI + "&add=add"
+    print(URI)
+
+# @csrf_protect
+# @csrf_exempt
+# @api_view(['GET', 'POST'])
+# def getNgoEvents(request, ngoId):
+#     if request.method == 'GET':
+#         response = Event.objects.filter(ngo__id=ngoId)
+#         response = EventSerializer(response, many=True).data
+#         return Response(response)
+#         # return format_response(response)
+#
+#
+# def format_response(data):
+#     serialized  = serializers.serialize(data)
+#     return HttpResponse(
+#         serialized,
+#         content_type="text/json-comment-filtered"
+#     )

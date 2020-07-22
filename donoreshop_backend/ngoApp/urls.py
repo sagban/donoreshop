@@ -25,4 +25,5 @@ urlpatterns = [
     path('event/<int:eventId>', views.getEvent, name='getEvent'),
     path('events/<int:ngoId>', views.getNgoEvents, name='getNgoEvents'),
     path('cart/<int:eventId>', views.createCart, name='createCart'),
+    path('createAddCartUrl', views.create_button_get_url, name='create_button_get_url'),
 ]

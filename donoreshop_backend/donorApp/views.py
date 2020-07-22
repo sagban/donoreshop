@@ -22,7 +22,7 @@ def cart(request):
     if request.method == 'POST':
         cart = request.data
 
-        if cart["status"] == Cart.STATUS.INITIATED:
+        if True:
 
 
             donorObj = Donor.objects.filter(id=cart["donor"]).first()
@@ -47,10 +47,13 @@ def cart(request):
                 relationObj.save()
                 amountDonated += relation["quantity"] * relation["perProductPrice"]
 
+
             cartObj.amountDonated = amountDonated
             cartObj.save()
 
-            return Response(cartObj.id)
+
+            context = {'amount': amountDonated}
+            return render(request, 'button.html', context)
 
 
 @csrf_protect

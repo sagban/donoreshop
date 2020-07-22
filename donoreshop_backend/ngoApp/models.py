@@ -73,6 +73,10 @@ class EventSerializer(serializers.ModelSerializer):
             'id',
             'name',
             'description',
+            'size',
+            'target_date',
+            'creation_date',
+            'image'
             # 'ngo'
         ]
         model = Event
@@ -85,12 +89,12 @@ class Product(models.Model):
     asin = models.fields.TextField(null=False)
     asin_name = models.fields.TextField(null=True)
     asin_currency = models.fields.TextField(default="USD")
-    asin_price = models.fields.TextField()
-    in_stock = models.fields.BooleanField()
-    is_prime = models.fields.BooleanField()
-    image_url = models.fields.URLField()
-    rating = models.fields.FloatField()
-    total_review = models.fields.IntegerField()
+    asin_price = models.fields.TextField(null = True)
+    in_stock = models.fields.BooleanField(null = True)
+    is_prime = models.fields.BooleanField(null = True)
+    image_url = models.fields.URLField(null = True)
+    rating = models.fields.FloatField(null = True)
+    total_review = models.fields.IntegerField(null = True)
 
     @classmethod
     def create(cls, product):
@@ -111,7 +115,7 @@ class Product(models.Model):
 
 class EventProduct(models.Model):
     id = models.AutoField(primary_key=True, null=False)
-    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    event = models.ForeignKey(Event,related_name='eventProducts', on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.fields.IntegerField()
     remaining_quantity = models.fields.IntegerField()

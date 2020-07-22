@@ -41,10 +41,15 @@ def cart(request):
             # create relations
             for relation in cart["products"]:
                 relation["cart"] = cartObj
-                relation["productDonated"] = Product.objects.filter(id=relation["productDonated"]).first()
+                relation["productDonated"] = Product.objects.filter(id=int(relation["productDonated"])).first()
 
-                eventObj = EventProduct.objects.filter(id=relation["productRequired"]).first()
+                eventObj = EventProduct.objects.filter(product__id=int(relation["productRequired"])).first()
                 relation["productRequired"] = eventObj
+
+                print(relation)
+                print(eventObj)
+                print(cartObj)
+
 
                 relationObj = CartProductRelation.create(relation)
                 relationObj.save()

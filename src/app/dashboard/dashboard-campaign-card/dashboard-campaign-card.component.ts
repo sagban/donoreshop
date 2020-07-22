@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {DataService} from '../../_services/data.service';
 
 @Component({
   selector: 'app-dashboard-campaign-card',
@@ -7,20 +8,26 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class DashboardCampaignCardComponent implements OnInit {
 
-  @Input() campaignId: string;
+  @Input() id: string;
   @Input() title: string;
-  @Input() ngo: string;
-  @Input() status: string;
-  @Input() timeLeft: string;
-  @Input() rating: string;
-  @Input() products: string;
-  @Input() backers: string;
+  @Input() description: string;
+  @Input() creation_date: string;
+  @Input() target_date: string;
+  @Input() sizes: string;
   @Input() image: string;
-  ratingArray:Array<number>;
-  constructor() { }
+  daysLeft:number;
 
-  ngOnInit(): void {
-    this.ratingArray =[].constructor(parseInt(this.rating));
+  constructor(private dataService: DataService){
+
+  }
+  ngOnInit() {
+    this.daysLeft = Math.floor(( Date.parse(this.target_date) - Date.parse(this.creation_date) ) / 86400000);
+    console.log(this.sizes, this.creation_date)
+  }
+  getUrl(){
+    this.dataService.getCartUrl(this.id).subscribe(res=>{
+      console.log(res);
+    })
   }
 
 }

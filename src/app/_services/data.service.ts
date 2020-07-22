@@ -15,13 +15,18 @@ export class DataService {
     return this.http.get(url, {params: {}// <=========== important!
     });
   }
-  getAllCampaigns():any{
-    const url = this.base + '/ngo/events/1';
+  getAllCampaigns(id=1):any{
+    const url = this.base + '/ngo/events/'+id;
     return this.http.get(url, {params: {}// <=========== important!
     });
   }
   getCampaignByID(event):any{
     const url = this.base + '/ngo/event/'+event;
+    return this.http.get(url, {params: {}// <=========== important!
+    });
+  }
+  getCartUrl(event):any{
+    const url = this.base + '/ngo/cart/'+event;
     return this.http.get(url, {params: {}// <=========== important!
     });
   }

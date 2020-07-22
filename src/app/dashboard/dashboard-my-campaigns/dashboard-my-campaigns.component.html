@@ -3,17 +3,16 @@
         <div class="g-margin-b-20--xs ">
             <h2 class="g-font-size-32--xs g-font-size-36--md g-letter-spacing--1 g-color--dark g-text-center--xs g-text-left--sm">My Campaigns</h2>
             <div class="row g-margin-t-20--xs">
-              <div class="col-xs-12 col-lg-6 g-padding-y-15--xs g-padding-x-5--xs g-padding-x-15--md">
+              <div *ngFor="let cam of campaigns" class="col-xs-12 col-sm-6 col-lg-4 g-padding-y-15--xs g-padding-x-5--xs g-padding-x-15--md g-margin-t-20--xs">
                 <app-dashboard-campaign-card
-                  campaignId="123"
-                  title="feed the poor"
-                  ngo="Donatekart"
-                  status="70%"
-                  timeLeft="2 days"
-                  rating="2"
-                  products="400"
-                  backers="222"
-                  image="https://dkprodimages.gumlet.io/DWL1104_Cover.png?format=webp&q=70&w=750&dpr=1.0"></app-dashboard-campaign-card>
+                  id="{{cam.id}}"
+                  title="{{cam.name}}"
+                  description="{{cam.description}}"
+                  creation_date="{{cam.creation_date}}"
+                  target_date="{{cam.target_date}}"
+                  sizes="{{cam.size}}"
+                  image="{{cam.image}}">
+                </app-dashboard-campaign-card>
               </div>
             </div>
         </div>

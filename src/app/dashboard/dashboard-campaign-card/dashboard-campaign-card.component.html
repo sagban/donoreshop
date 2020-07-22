@@ -1,28 +1,17 @@
 <article>
-    <img class="img-responsive" src="{{image}}" width="100%" alt="Image">
+    <div style="max-height: 400px"><img class="img-responsive" src="{{image}}" width="100%" alt="Image"></div>
     <div class="caption g-bg-color--white g-box-shadow__dark-lightest-v2 g-text-left--xs g-padding-x-10--xs g-padding-y-15--xs">
         <div class="g-font-size-14--xs g-font-weight--700 g-color--primary g-letter-spacing--1">{{title}}</div>
-        <div *ngIf="ngo" class="g-font-size-11--xs g-letter-spacing--1 g-color--dark">
-          By: {{ngo}}
+        <div *ngIf="description" class="g-font-size-11--xs g-letter-spacing--1 g-color--dark">{{description}}
         </div>
         <div class="price-star">
-            <div class="g-font-size-13--xs g-color--dark g-margin-r-5--xs"><span class="g-font-weight--600">Completed: </span>{{status}}</div>
-            <div class="g-font-size-13--xs g-color--dark"><span class="g-font-weight--600">Time Left: </span>{{timeLeft}}</div>
+            <div class="g-font-size-13--xs g-color--dark g-margin-r-5--xs">
+              <span class="g-font-weight--600">People Affected: </span>{{sizes}}
+            </div>
+            <div class="g-font-size-13--xs g-color--dark"><span class="g-font-weight--600">Time Left: </span>{{daysLeft}} days</div>
         </div>
-        <div class="price-star">
-          <div class="g-font-size-13--xs g-color--dark g-margin-r-5--xs"><span class="g-font-weight--600">Products: </span>{{products}}</div>
-          <div class="g-font-size-13--xs g-color--dark"><span class="g-font-weight--600">Backers: </span>{{backers}}</div>
+        <div class="center-block g-full-width--xs">
+          <button type="button" (click)="getUrl()" style="width: 100% !important;" class=" text-uppercase s-btn s-btn--xs s-btn--primary-bg g-margin-t-10--xs g-radius--50 g-padding-x-50--xs">Create Cart</button>
         </div>
-        <div class="g-font-size-13--xs g-color--dark g-font-weight--400 star">
-          <div class="g-font-size-13--xs g-color--dark g-margin-r-5--xs g-display-">
-            <span class="g-font-weight--600">Ratings: </span>
-            <i *ngFor="let st of ratingArray" class="material-icons g-font-size-14--xs g-color--gold">star</i>
-          </div>
-        </div>
-      <div class="center-block g-full-width--xs">
-        <button type="button" routerLink="/dashboard/my_campaigns/{{campaignId}}/edit" class="text-uppercase s-btn s-btn--xs s-btn--primary-bg g-margin-t-10--xs g-radius--50 g-padding-x-50--xs g-margin-r-10--xs">Edit Campaign</button>
-        <button type="button" routerLink="/dashboard/my_campaigns/{{campaignId}}/report" class="text-uppercase s-btn s-btn--xs s-btn--primary-bg g-margin-t-10--xs g-radius--50 g-padding-x-50--xs">View Report</button>
-
-      </div>
     </div>
 </article>

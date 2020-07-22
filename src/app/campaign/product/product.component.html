@@ -1,0 +1,23 @@
+<article>
+    <img class="img-responsive" src="{{image}}" width="100%" alt="Image">
+    <div class="caption g-bg-color--white g-box-shadow__dark-lightest-v2 g-text-left--xs g-padding-x-10--xs g-padding-y-15--xs">
+      <div class="g-font-size-14--xs g-font-weight--700 g-color--primary g-letter-spacing--1">{{title}}</div>
+      <div class="g-font-size-13--xs g-color--dark g-font-weight--600 price">{{price}}</div>
+      <div class="price-star">
+        <div class="g-font-size-13--xs g-color--dark g-margin-r-5--xs"><span class="g-font-weight--600">Completed: </span>{{status}}</div>
+        <div class="g-font-size-13--xs g-color--dark"><span class="g-font-weight--600">Needed: </span>{{needed}}</div>
+      </div>
+      <div class="price-star">
+        <div class="g-font-size-13--xs g-color--dark g-margin-r-5--xs"><span class="g-font-weight--600">Obtained: </span>{{obtained}}</div>
+        <div class="g-font-size-13--xs g-color--dark"><span class="g-font-weight--600">Donors: </span>{{donors}}</div>
+      </div>
+      <div class="control">
+        <button class="control-btn g-color--dark" [ngClass]="{'shake': qty < 2}" (click)="dec()"><i class="ti-minus g-font-size-14--xs"></i></button>
+        <div class="control-qnt g-color--dark g-font-size-14--xs">{{qty}}</div>
+        <button class="control-btn g-color--dark" [ngClass]="{'shake': qty > 9}" (click)="inc()"><i class="ti-plus g-font-size-14--xs"></i></button>
+      </div>
+      <div class="center-block g-full-width--xs">
+        <button type="button" (click)="addToCart()" style="width: 100% !important;" class=" text-uppercase s-btn s-btn--xs s-btn--primary-bg g-margin-t-10--xs g-radius--50 g-padding-x-50--xs">{{buttonTxt}}</button>
+      </div>
+    </div>
+</article>

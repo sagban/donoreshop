@@ -1,0 +1,31 @@
+<form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <div class="g-text-center--xs g-margin-b-40--xs">
+      <h2 class="g-font-size-30--xs g-color--dark">Signup</h2>
+    </div>
+    <div class="g-margin-b-30--xs">
+      <input type="email" class="form-control s-form-v4__input" required formControlName="email" placeholder="* Email">
+      <div *ngIf="f.email?.invalid && (f.email?.dirty || f.email?.touched)">
+        <div *ngIf="f.email.errors?.required" class="g-color--primary g-font-size-10--xs">
+          Email is required.
+        </div>
+        <div *ngIf="f.email.errors?.email" class="g-color--primary g-font-size-10--xs">
+          Invalid email format.
+        </div>
+      </div>
+    </div>
+    <div class="g-margin-b-30--xs">
+      <input type="password" class="form-control s-form-v4__input" required formControlName="password" placeholder="* Password">
+      <div *ngIf="f.password?.invalid && (f.password?.dirty || f.password?.touched)">
+        <div *ngIf="f.password.errors?.required" class="g-color--primary g-font-size-10--xs">
+          Password is required.
+        </div>
+        <div *ngIf="f.password.errors?.pattern" class="g-color--primary g-font-size-10--xs">
+          Invalid password format.
+        </div>
+      </div>
+    </div>
+    <div class="g-text-center--xs">
+      <button type="submit" [disabled]="signupForm.invalid" class="text-uppercase btn-block s-btn s-btn--md s-btn--primary-bg g-radius--50 g-padding-x-50--xs g-margin-b-20--xs">Signup</button>
+      <p class="g-font-size-13--xs g-color--primary" *ngIf="message != ''">{{message}}</p>
+    </div>
+</form>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthenticationService} from '../_services/authentication.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class DashboardComponent implements OnInit {
 
   public menuListShown:Boolean = true;
-  constructor() { }
+  constructor(private authenticationService: AuthenticationService, private router: Router,) { }
 
   ngOnInit(): void {
   }
@@ -16,6 +18,11 @@ export class DashboardComponent implements OnInit {
     if(window.innerWidth <=600){
       this.menuListShown = !this.menuListShown;
     }
+  }
+  signOut(){
+    this.authenticationService.signOut().then(()=>{
+      this.router.navigate(['start_campaign']);
+    });
   }
 
 }

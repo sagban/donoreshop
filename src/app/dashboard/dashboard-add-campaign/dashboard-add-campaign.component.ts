@@ -38,7 +38,7 @@ export class DashboardAddCampaignComponent implements OnInit {
 
   public onSubmit(){
     let data = this.addCampaignForm.value;
-    data['ngo'] = "sagarbansal099@gmail.com";
+    data['ngo'] = 1;
     data['products'] = this.products;
     console.log(data);
     this.message = "Campaign Saved";
@@ -65,8 +65,10 @@ export class DashboardAddCampaignComponent implements OnInit {
   public addProduct(index){
     const product = this.buyForm.value;
 
+    product['id'] = this.results[index].id;
     product['asin'] = this.results[index].asin;
     product['substitute'] = product.asin;
+    product['quantity'] = this.results[index].quantity;
     console.log(product);
     this.products.push(product);
     this.showList = false;

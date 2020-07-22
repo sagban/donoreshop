@@ -23,10 +23,11 @@ class Ngo(models.Model):
 
 
     id = models.AutoField(primary_key=True, null=False)
-    name = models.fields.TextField()
+    name = models.fields.TextField(max_length=50, null=True)
     description = models.fields.TextField()
     type = models.fields.CharField(max_length= 20, choices= NGO_TYPES.choices,default= NGO_TYPES.GENERAL)
     size = models.fields.IntegerField()
+    # image = models.fields.URLField(null=True)
 
 
 class NgoSerializer(serializers.ModelSerializer):
@@ -37,7 +38,10 @@ class NgoSerializer(serializers.ModelSerializer):
         fields = [
             'id',
             'name',
-            'description'
+            'description',
+            'type',
+            'size',
+            'image'
         ]
 
 
@@ -58,7 +62,7 @@ class Event(models.Model):
         return (self.id)
 
     id = models.AutoField(primary_key=True, null=False)
-    name = models.fields.TextField()
+    name = models.fields.TextField(max_length=50, null=True)
     description = models.fields.TextField()
     size = models.fields.IntegerField()
     ngo = models.ForeignKey(Ngo, related_name="ngo", on_delete=models.CASCADE)
@@ -73,6 +77,10 @@ class EventSerializer(serializers.ModelSerializer):
             'id',
             'name',
             'description',
+            'size',
+            'target_date',
+            'creation_date',
+            'image'
             # 'ngo'
         ]
         model = Event
@@ -81,7 +89,7 @@ class EventSerializer(serializers.ModelSerializer):
 
 class Product(models.Model):
     id = models.AutoField(primary_key=True, null=False)
-    name = models.fields.TextField()
+    name = models.fields.TextField(max_length=50, null=True)
     asin = models.fields.TextField(null=False)
     asin_name = models.fields.TextField(null=True)
     asin_currency = models.fields.TextField(default="USD")
@@ -111,7 +119,7 @@ class Product(models.Model):
 
 class EventProduct(models.Model):
     id = models.AutoField(primary_key=True, null=False)
-    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    event = models.ForeignKey(Event,related_name='eventProducts', on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.fields.IntegerField()
     remaining_quantity = models.fields.IntegerField()

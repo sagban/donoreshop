@@ -19,7 +19,6 @@ import { StartCampaignComponent } from './start-campaign/start-campaign.componen
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
-import {AmplifyUIAngularModule} from '@aws-amplify/ui-angular';
 import { SignupComponent } from './signup/signup.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { CampaignComponent } from './campaign/campaign.component';

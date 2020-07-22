@@ -1,9 +1,15 @@
 import datetime
 
 from django.db import models
-
 # Create your models here.
 
+from datetime import datetime
+
+
+# class NgoManager(models.Manager):
+#     def get_by_natural_key(self, name, description):
+#         return self.get(name=name, description=description)
+from rest_framework import serializers
 
 
 
@@ -23,6 +29,18 @@ class Ngo(models.Model):
     size = models.fields.IntegerField()
 
 
+class NgoSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(required=False)
+    class Meta:
+        model = Ngo
+        depth = 1
+        fields = [
+            'id',
+            'name',
+            'description'
+        ]
+
+
 class Event(models.Model):
 
     @classmethod
@@ -32,25 +50,63 @@ class Event(models.Model):
         eventObj.description = event['description']
         eventObj.size = event['size']
         eventObj.ngo = event['ngo']
+        eventObj.target_date = datetime.strptime(event['target_date'], "%Y-%m-%d").date()
 
         return eventObj
 
+    def natural_key(self):
+        return (self.id)
 
     id = models.AutoField(primary_key=True, null=False)
     name = models.fields.TextField()
     description = models.fields.TextField()
     size = models.fields.IntegerField()
-    ngo = models.ForeignKey(Ngo, on_delete=models.CASCADE)
-    target_date = models.fields.DateField(default=datetime.datetime.now, blank=True)
-    creation_date = models.fields.DateField(default=datetime.datetime.now, blank=True)
+    ngo = models.ForeignKey(Ngo, related_name="ngo", on_delete=models.CASCADE)
+    target_date = models.fields.DateField(default=datetime.now, blank=True)
+    creation_date = models.fields.DateField(default=datetime.now, blank=True)
+    image = models.fields.URLField(null=True, default="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSdYNZmQOxOoowAKZbOYTjxAU5d_pA52JxWgg&usqp=CAU")
+
+class EventSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(required=True)
+    class Meta:
+        fields = [
+            'id',
+            'name',
+            'description',
+            # 'ngo'
+        ]
+        model = Event
+        depth = 1
 
 
 class Product(models.Model):
     id = models.AutoField(primary_key=True, null=False)
     name = models.fields.TextField()
-    asin = models.fields.URLField()
-    url = models.fields.TextField(null=False)
+    asin = models.fields.TextField(null=False)
+    asin_name = models.fields.TextField(null=True)
+    asin_currency = models.fields.TextField(default="USD")
+    asin_price = models.fields.TextField(default=0)
+    in_stock = models.fields.BooleanField(null=True)
+    is_prime = models.fields.BooleanField(null=True)
+    image_url = models.fields.URLField(null=True)
+    rating = models.fields.FloatField(null=True)
+    total_review = models.fields.IntegerField(null=True)
 
+    @classmethod
+    def create(cls, product):
+        productObj = Product()
+        productObj.name = product['asin_name']
+        productObj.asin = product['asin']
+        productObj.asin_name = product['asin_name']
+        productObj.asin_currency = product['asin_currency']
+        productObj.asin_price = product['asin_price']
+        productObj.in_stock = product['in_stock']
+        productObj.is_prime = product['is_prime']
+        productObj.image_url = product['image_url']
+        productObj.rating = product['rating']
+        productObj.total_review = product['total_review']
+
+        return productObj
 
 
 class EventProduct(models.Model):
@@ -77,8 +133,8 @@ class EventCart(models.Model):
     id = models.AutoField(primary_key=True, null=False)
     status = models.fields.CharField(max_length= 20, choices= STATUS.choices)
     event = event = models.ForeignKey(Event, on_delete=models.CASCADE)
-    total_bill = models.fields.FloatField()
-    expexcted_delivery_date = models.fields.DateField(default=datetime.datetime.now, blank=True)
-    amazon_order_id = models.fields.TextField()
-    bill = models.fields.URLField()
+    total_bill = models.fields.FloatField(null=True)
+    expexcted_delivery_date = models.fields.DateField(default=datetime.now, blank=True,null= True)
+    amazon_order_id = models.fields.TextField(null = True)
+    bill = models.fields.URLField(null = True)
 

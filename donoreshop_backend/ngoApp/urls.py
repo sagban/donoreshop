@@ -19,9 +19,12 @@ from django.urls import path
 from ngoApp import views
 
 urlpatterns = [
-    path('home/', views.home, name='home'),
-    path('products/', views.getProducts, name='getProducts'),
+    path('products/<str:queryString>', views.getProducts, name='getProducts'),
     path('event/', views.createEvent, name='createEvent'),
     path('event/<int:eventId>', views.getEvent, name='getEvent'),
     path('events/<int:ngoId>', views.getNgoEvents, name='getNgoEvents'),
+    path('cart/<int:eventId>', views.createCart, name='createCart'),
+    path('placecart/<int:eventCartId>', views.markCartAsPlaced, name='markCartAsPlaced'),
+    path('deliverOrder/<int:eventCartId>', views.markOrderAsDelivered, name='markOrderAsDelivered'),
+
 ]

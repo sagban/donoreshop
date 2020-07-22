@@ -20,4 +20,9 @@ from donorApp import views
 
 urlpatterns = [
     path('home/', views.home, name='home'),
+    path('', views.addDonor, name='addDonor'),
+    path('<int:donorId>/', views.getDonor, name='getDonor'),
+    path('cart/', views.cart, name='cart'),
+    path('cart/<int:cartId>/', views.getCart, name='cartId'),
+    path('donate/', views.donate, name='donate'),
 ]

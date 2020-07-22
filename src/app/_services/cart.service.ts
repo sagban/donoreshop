@@ -20,22 +20,26 @@ export class CartService {
   private dummy: any = {
     data: {},
     totalPrice: 0,
-    totalQty: 0
+    totalQty: 0,
+    campaignId:0
   };
   base: any = environment.apiUrl;
   constructor(private http: HttpClient) {
   }
 
 
-  public addItem(item:any, id: string){
+  public addItem(item:any, id: string, campaignId:string){
     const cart = this.getCart();
     let storedItem = cart.data[id];
     if(!storedItem){
       storedItem = cart.data[id] = item;
-      cart.totalQty += 1;
-      cart.totalPrice += storedItem.price;
+      cart.totalQty += item.qty;
+      cart.totalPrice += item.qty * parseFloat(storedItem.price);
+      cart.campaignId = campaignId;
       this.updateCart(cart);
     }
+
+
   }
 
   public decQty(id: string){
@@ -82,5 +86,10 @@ export class CartService {
   }
   public getSort(){
     return this._getSort.value;
+  }
+
+  postCart(data):any{
+    const url = this.base + '/donor/cart/';
+    return this.http.post(url, data);
   }
 }

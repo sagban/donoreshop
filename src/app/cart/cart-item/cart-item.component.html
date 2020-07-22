@@ -1,0 +1,30 @@
+<div class="clearfix cart-item g-margin-b-20--xs">
+    <div class="g-media g-width-100--xs">
+        <div class="wow fadeInUp" data-wow-duration=".3" data-wow-delay=".8s">
+          <img src="{{image}}" alt="{{title}}" width="100%">
+        </div>
+    </div>
+    <div class="g-media__body g-padding-x-20--xs cart-item-body g-padding-y-10--xs g-padding-y-15--sm">
+      <div class="g-margin-b-5--xs cart-item-info">
+          <p class="text-uppercase g-font-size-13--xs g-font-size-14--sm g-font-weight--300 g-color--dark g-margin-b-0--xs">{{title}}</p>
+          <div class="price-star">
+            <div class="g-font-size-13--xs g-color--dark g-margin-r-5--xs"><span class="g-font-weight--600">Completed: </span>{{status}}</div>
+            <div class="g-font-size-13--xs g-color--dark"><span class="g-font-weight--600">Needed: </span>{{needed}}</div>
+          </div>
+          <div class="price-star">
+            <div class="g-font-size-13--xs g-color--dark g-margin-r-5--xs"><span class="g-font-weight--600">Obtained: </span>{{obtained}}</div>
+            <div class="g-font-size-13--xs g-color--dark"><span class="g-font-weight--600">Donors: </span>{{donors}}</div>
+          </div>
+          <div class="control">
+            <button class="control-btn g-color--dark" [ngClass]="{'shake': qtyInt < 2}" (click)="dec()"><i class="ti-minus g-font-size-14--xs"></i></button>
+            <div class="control-qnt g-color--dark g-font-size-14--xs">{{qtyInt}}</div>
+            <button class="control-btn g-color--dark" [ngClass]="{'shake': qtyInt > 9}" (click)="inc()"><i class="ti-plus g-font-size-14--xs"></i></button>
+            <div class="control-remove g-font-size-11--xs g-color--dark g-margin-b-5--xs" (click)="remove()">Remove</div>
+          </div>
+      </div>
+      <div class="cart-item-price">
+        <p class="g-font-size-13--xs g-margin-b-0--xs g-font-weight--400 g-color--primary">Rs. {{price}}</p>
+      </div>
+    </div>
+</div>
+

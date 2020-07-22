@@ -19,8 +19,8 @@ export class ExploreCampaignComponent implements OnInit {
   public totalItems: any;
   public sortList:any={
     'latest': 'Latest',
-    'price_asc': 'Price low to high',
-    'price_dsc': 'Price high to low',
+    'donor_asc': 'Donor low to high',
+    'donor_dsc': 'Donor high to low',
     'popular':'Popularity'
   };
   public default_sort:string = this.sortList.latest;

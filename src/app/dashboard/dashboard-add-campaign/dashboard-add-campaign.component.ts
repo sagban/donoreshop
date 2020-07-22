@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormService} from '../../_services/form.service';
+import {DataService} from '../../_services/data.service';
 
 @Component({
   selector: 'app-dashboard-add-campaign',
@@ -7,9 +10,66 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardAddCampaignComponent implements OnInit {
 
-  constructor() { }
+  public addCampaignForm: FormGroup;
+  buyForm:FormGroup;
+  public products:Array<any> = [];
+  public results:Array<any> = [];
+  public showList:boolean= false;
+  private debouncer;
+  constructor(private fb: FormBuilder,
+              private formService: FormService,
+              private dataService: DataService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.addCampaignForm = this.fb.group({
+      name: ["", [Validators.required, Validators.maxLength(50), Validators.pattern('^[a-zA-Z][a-zA-Z -]+$')]],
+      description: ["", [Validators.required, Validators.minLength(5), Validators.pattern('^[a-zA-Z][a-zA-Z -]+.$')]],
+      image: ["", [Validators.required]],
+      size: ["", [Validators.required]],
+      target_date: ["", [Validators.required, Validators.pattern('^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$')]],
+    });
+    this.buyForm = this.fb.group({
+      asin: ['', [Validators.required]],
+      quantity: ['', [Validators.required]]
+    });
+  }
+
+  get f() { return this.addCampaignForm.controls; }
+
+  public onSubmit(){
+    let data = this.addCampaignForm.value;
+    data['ngo'] = "sagarbansal099@gmail.com";
+    data['products'] = this.products;
+    console.log(data);
+    this.formService.addCampaign(data).subscribe(res=>{
+      console.log(res);
+    });
+  }
+  public searchProducts(event){
+    const inputValue = event.target.value;
+    clearTimeout(this.debouncer);
+    this.debouncer = setTimeout(()=>{
+      this.dataService.getAWSProducts(inputValue).subscribe(res=>{
+        this.showList = true;
+        console.log(res);
+        if(res.length > 0){
+          this.results = res;
+        }
+      })
+    }, 1500);
+
+  }
+  public addProduct(){
+    const product = this.buyForm.value;
+    console.log(product);
+    product['substitute'] = product.asin;
+    this.products.push(product);
+    this.showList = false;
+    this.results = [];
+  }
+
+  public removeProduct(index){
+    this.products.slice(index);
   }
 
 }

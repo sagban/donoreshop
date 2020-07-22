@@ -28,9 +28,9 @@ import { ProductComponent } from './campaign/product/product.component';
 import { ReviewComponent } from './campaign/review/review.component';
 import { UpdateComponent } from './campaign/update/update.component';
 import { CartComponent } from './cart/cart.component';
-import { CartItemComponent } from './cart-item/cart-item.component';
 import { ExploreCampaignComponent } from './explore-campaign/explore-campaign.component';
 import {NotificationModule} from './notification/notification.module';
+import {CartItemComponent} from './cart/cart-item/cart-item.component';
 
 @NgModule({
   declarations: [

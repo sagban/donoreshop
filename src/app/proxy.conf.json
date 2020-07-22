@@ -1,0 +1,6 @@
+{
+  "/api": {
+    "target": "http://92e1b2cac8ad.ngrok.io/",
+    "secure": false
+  }
+}

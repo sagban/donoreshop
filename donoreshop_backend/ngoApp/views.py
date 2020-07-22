@@ -10,6 +10,8 @@ from donorApp.models import *
 from ngoApp.models import *
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from django.forms.models import model_to_dict
+from django.core.serializers.json import DjangoJSONEncoder
 
 
 @csrf_protect
@@ -21,8 +23,14 @@ def createEvent(request):
         event = request.data
         event["ngo"] = Ngo.objects.filter(id=event["ngo"]).first()
         eventObj = Event.create(event)
-
         eventObj.save()
+        for product in event["products"]:
+          p = Product.objects.filter(id = product["id"]).first()
+          eventPro = EventProduct.objects.create(event = eventObj, product = p, quantity = product["quantity"], remaining_quantity = product["quantity"])
+          for rep_product in product["substitue"]:
+            p1 = Product.objects.filter(id = rep_product).first()
+            EvenProductReplacements.objects.create(replacement_product  = p1,event_product = eventPro)
+
         return HttpResponse(eventObj.id)
 
 @csrf_exempt
@@ -93,7 +101,7 @@ def markCartAsPlaced(request, eventCartId):
         donorCarts.update(status = Cart.STATUS.PLACED)
         donorCarts.update(bill = eventCartData["bill"])
 
-        return HttpResponse("1")\
+        return HttpResponse("1")
 
 
 @csrf_protect
@@ -156,10 +164,14 @@ def getNgoEvents(request, ngoId):
 @api_view(['GET', 'POST'])
 def getEvent(request, eventId):
     if request.method == 'GET':
-        response = Event.objects.filter(id=eventId)
-        response = EventSerializer(response, many=True).data
-
-        return Response(response)
+        event = Event.objects.filter(id=eventId)
+        event_products = event.first().eventProducts.all()
+        products = []
+        for p in event_products:
+          products.append({"quantity": p.quantity,"remaining_quantity":p.remaining_quantity,"name":p.product.name})
+        #response = EventSerializer(response, many=True).data
+        response = {"event": EventSerializer(event, many=True).data[0], "event_products":products}
+        return HttpResponse(json.dumps(response,indent=1))
 
 #
 # def format_response(data):

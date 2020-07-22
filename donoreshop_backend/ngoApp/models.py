@@ -73,6 +73,10 @@ class EventSerializer(serializers.ModelSerializer):
             'id',
             'name',
             'description',
+            'size',
+            'target_date',
+            'creation_date',
+            'image'
             # 'ngo'
         ]
         model = Event
@@ -111,7 +115,7 @@ class Product(models.Model):
 
 class EventProduct(models.Model):
     id = models.AutoField(primary_key=True, null=False)
-    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    event = models.ForeignKey(Event,related_name='eventProducts', on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.fields.IntegerField()
     remaining_quantity = models.fields.IntegerField()

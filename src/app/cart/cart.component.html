@@ -87,7 +87,7 @@
         </div>
       </div>
       <div class="center-block cart-checkout g-margin-t-40--xs g-margin-t-20--md  g-margin-t-10--md g-padding-x-20--xs g-padding-x-30--md g-text-center--xs g-bg-color--white g-padding-y-15--xs">
-        <div
+        <button  class="cart-checkout-btn text-uppercase btn-block s-btn s-btn--md s-btn--primary-brd g-radius--50 g-padding-x-20--xs g-padding-x-50--md"
           data-ap-widget-type="expressPaymentButton"
           data-ap-signature="kc8Wtjb0FkRLAi4flmEhkPhZF7PZSCd%2FxfgmhzmwZAg%3D"
           data-ap-seller-id="A1JAGVPSRC7EDZ"
@@ -98,17 +98,18 @@
           data-ap-cancel-return-url="http://studentportal.vnit.ac.in/"
 
           data-ap-currency-code="USD"
-          data-ap-amount="12"
+          data-ap-amount="112"
           data-ap-note=""
           data-ap-shipping-address-required="true"
           data-ap-payment-action="Authorize"
         >
-        </div>
-          <!--<button (click)="sendCart()" class="cart-checkout-btn text-uppercase btn-block s-btn s-btn&#45;&#45;md s-btn&#45;&#45;primary-bg g-radius&#45;&#45;50 g-padding-x-20&#45;&#45;xs g-padding-x-50&#45;&#45;md">-->
-            <!--<span class="cart-checkout-items g-text-left&#45;&#45;xs">{{cartQty}} Items</span>-->
-            <!--<span class="cart-checkout-name g-text-center&#45;&#45;xs">Checkout</span>-->
-            <!--<span class="cart-checkout-price g-text-right&#45;&#45;xs">[Rs. {{cartPrice}}]</span>-->
-          <!--</button>-->
+          Pay Now
+        </button>
+          <button (click)="sendCart()" class="cart-checkout-btn text-uppercase btn-block s-btn s-btn--md s-btn--primary-bg g-radius--50 g-padding-x-20--xs g-padding-x-50--md">
+            <span class="cart-checkout-items g-text-left--xs">{{cartQty}} Items</span>
+            <span class="cart-checkout-name g-text-center--xs">Checkout</span>
+            <span class="cart-checkout-price g-text-right--xs">[Rs. {{cartPrice}}]</span>
+          </button>
       </div>
     </div>
   </div>

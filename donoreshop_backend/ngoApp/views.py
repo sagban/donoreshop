@@ -8,6 +8,8 @@ import requests
 from django.views.decorators.csrf import csrf_protect, csrf_exempt
 
 from ngoApp.models import *
+from donorApp.models import *
+from django.db.models import Sum, F
 
 
 def home(request):
@@ -57,11 +59,20 @@ def getProducts(request):
 @csrf_protect
 @csrf_exempt
 @api_view(['GET', 'POST'])
-def createCart(request,ngoId, eventId):
+def createCart(request, eventId):
     if request.method == 'GET':
-        #Todo
-        response = Event.objects.filter(id=eventId)
-        format_response(response)
+        #a = Cart.objects.all()
+        carts = Cart.objects.filter(status = Cart.STATUS.INITIATED, event__id = eventId)
+        #return  HttpResponse(carts)
+        requiredProducts = CartProductRelation.objects.filter(cart__event__id = eventId, cart__status = Cart.STATUS.INITIATED)
+        response = requiredProducts.values('productDonated','productDonated__asin').annotate(Sum('quantity'))
+        event = Event.objects.filter(id = eventId).first()
+        eventCart = EventCart.objects.create(status = EventCart.STATUS.INITIATED, event = event)
+
+        carts.update(eventCart = eventCart)
+        return HttpResponse(response)
+
+
 
 @csrf_protect
 @csrf_exempt

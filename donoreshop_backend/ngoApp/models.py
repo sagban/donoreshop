@@ -77,8 +77,8 @@ class EventCart(models.Model):
     id = models.AutoField(primary_key=True, null=False)
     status = models.fields.CharField(max_length= 20, choices= STATUS.choices)
     event = event = models.ForeignKey(Event, on_delete=models.CASCADE)
-    total_bill = models.fields.FloatField()
-    expexcted_delivery_date = models.fields.DateField(default=datetime.datetime.now, blank=True)
-    amazon_order_id = models.fields.TextField()
-    bill = models.fields.URLField()
+    total_bill = models.fields.FloatField(null=True)
+    expexcted_delivery_date = models.fields.DateField(default=datetime.datetime.now, blank=True,null= True)
+    amazon_order_id = models.fields.TextField(null = True)
+    bill = models.fields.URLField(null = True)
 

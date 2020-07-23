@@ -1,1 +1,55 @@
-<p>checkout works!</p>
+<app-header></app-header>
+<div class="s-promo-block-v1 g-fullheight--md sell">
+    <div class="container g-ver-center--md g-padding-y-100--xs g-margin-t-30--xs">
+        <div class="row g-hor-centered-row--md g-margin-t-30--xs g-margin-t-20--sm">
+            <div class="col-lg-4 col-sm-4 g-hor-centered-row__col">
+              <div class="wow fadeInUp center-block g-width-350--xs g-bg-color--white g-box-shadow__dark-lightest-v3 g-padding-x-40--xs g-padding-y-60--xs g-radius--4" data-wow-duration=".3" data-wow-delay=".1s">
+                <div class="g-text-center--xs g-margin-b-0--xs">
+                  <h2 class="g-font-size-30--xs g-color--dark">Pay</h2>
+                  <p>Pay faster and secure using Amazon Pay</p>
+                </div>
+                <div class="cart-details g-margin-t-20--xs g-margin-t-0--sm">
+                    <h4 class="g-font-size-14--xs g-color--primary text-center text-uppercase">Order Summary</h4>
+                    <div class="price-breakup">
+                      <div class="price-row g-margin-b-10--xs">
+                        <span class="price-breakup-key g-font-size-12--xs">Cart Total</span>
+                        <span class="price-breakup-value g-font-size-12--xs">USD. {{cartPrice}}</span>
+                      </div>
+                      <div class="price-row g-margin-b-10--xs">
+                        <span class="price-breakup-key g-font-size-12--xs">Tax</span>
+                        <span class="price-breakup-value g-font-size-12--xs">USD. {{tax}}</span>
+                      </div>
+                      <div class="price-row border-b g-margin-t-15--xs g-margin-b-20--xs"></div>
+                      <div class="price-row g-margin-b-10--xs g-font-weight--600 ">
+                        <span class="price-breakup-key g-font-size-14--xs">Total</span>
+                        <span class="price-breakup-value g-font-size-14--xs">USD. {{totalPrice}}</span>
+                      </div>
+                    </div>
+                  </div>
+                <div class="center-block g-margin-t-20--xs">
+                  <div
+                    data-ap-widget-type="expressPaymentButton"
+                    data-ap-signature="cwaPFAikhB%2FxD4DqSH5zQ08bJWbEWNax6QZEmzp0G4I%3D"
+                    data-ap-seller-id="A1JAGVPSRC7EDZ"
+                    data-ap-access-key="AKIAJFIJ3UJFPA3YPPYQ"
+                    data-ap-lwa-client-id="amzn1.application-oa2-client.3bd25b31db5141c280f7073485451c0d"
+                    data-ap-return-url="http://localhost:4200"
+
+                    data-ap-cancel-return-url="http://localhost:4200"
+
+                    data-ap-currency-code="USD"
+                    data-ap-amount="100"
+                    data-ap-note=""
+                    data-ap-shipping-address-required="true"
+                    data-ap-payment-action="AuthorizeAndCapture"
+                  >
+                  </div>
+                </div>
+
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

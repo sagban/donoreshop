@@ -63,7 +63,7 @@
       </div>
       <div class="row products border-t border-l g-padding-x-15--xs g-padding-y-15--xs">
         <div *ngFor="let cam of campaigns" class="col-xs-12 col-md-4 col-lg-4 g-padding-y-15--xs g-padding-x-5--xs g-padding-x-15--md">
-          <a href="/campaign/1/{{replaceSpace(cam.name)}}/{{cam.id}}/details">
+          <a href="/campaign/1/{{cam.id}}/details">
                     <app-campaign-card
                       id="{{cam.id}}"
                       title="{{cam.name}}"

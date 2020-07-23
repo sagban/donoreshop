@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {CartService} from '../_services/cart.service';
+import {CheckoutComponent} from '../checkout/checkout.component';
 
 @Component({
   selector: 'app-cart',
@@ -15,8 +16,8 @@ export class CartComponent implements OnInit {
   campaignId:any;
   tax:number = 0;
   totalPrice: number;
-  cartSaved:boolean = false;
   amount:string;
+  cartSaved:boolean = false;
   constructor(public cartService: CartService) {
     this.cartService.getCartEmitter.subscribe(res=>{
       if(res){
@@ -57,8 +58,6 @@ export class CartComponent implements OnInit {
       console.log(res);
       if(res){
         this.amount = res;
-        this.cartSaved = true;
-        this.ngOnInit();
       }
     });
 

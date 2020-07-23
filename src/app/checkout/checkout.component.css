@@ -1,0 +1,144 @@
+.cart{
+
+}
+
+.cart-heading{
+  display: flex;
+}
+
+.cart-heading-r{
+  width: 100%;
+  text-align: right;
+}
+.cart-heading-l{
+  width: 100%;
+  text-align: left;
+  display: flex;
+}
+.items{
+  margin-left: 10px;
+}
+.items, .price{
+  display: block;
+}
+
+.cart-details{
+  padding: 0px;
+}
+.price-row{
+  display: flex;
+  width: 100%;
+}
+.price-breakup-key{
+  width: 100%;
+  text-align: left;
+}
+.price-breakup-value{
+  width: 100%;
+  text-align: right;
+}
+
+.border-b{
+  border-bottom: 0.0625rem #eee solid;
+}
+.cart-checkout-items, .cart-checkout-price{
+  display: none;
+}
+
+.shipping-input{
+
+  height: 2.3rem !important;
+  font-size: 12px !important;
+  color: #333;
+  border-bottom: .0625rem solid #ccc !important;
+  background: transparent;
+  text-transform: none !important;
+
+}
+
+.emptycart{
+  width: 100%;
+  display: flex;
+  position: relative;
+  background: #f0f0f0;
+  align-items: center;
+  justify-content: center;
+}
+.emptycart-body{
+  text-align: center;
+  width: 350px;
+  margin: 0;
+  padding: 0;
+}
+.emptycart-body img{
+  width: 300px;
+  padding: 0 40px;
+}
+
+
+.box-item{
+  border-radius: 4px;
+  border: 0.0625rem solid #eee;
+  transition: all 1s linear;
+}
+.box-item-edit{
+  width: 20%;
+}
+
+.box-item-edit:hover{
+  cursor: pointer;
+}
+
+.edit-right{
+  display: block;
+  width: 20%;
+  text-align: right;
+  cursor: pointer;
+}
+.body-right{
+  display: flex;
+  align-items: center;
+}
+.box-item-info{
+  width: 100%;
+}
+@media (min-width: 600px){
+  .box-item-body{
+    display: flex;
+  }
+
+  .box-item-edit{
+    display: block;
+    width: 20%;
+    text-align: right;
+  }
+}
+
+
+
+@media(max-width: 990px) {
+  .cart-details{
+    border: 0.0625rem #eee solid;
+    border-radius: 4px;
+  }
+  .cart-checkout{
+    margin-left:-15px;
+    margin-right:-15px;
+    position: sticky;
+    bottom: 0;
+    box-shadow: 0 0px 10px 0 rgba(113, 100, 100, 0.1);
+  }
+  .cart-checkout-btn{
+    display: flex;
+    justify-content: space-between;
+    border-radius: 4px !important;
+  }
+  .cart-checkout-items, .cart-checkout-price{
+    display: block;
+  }
+  .items, .price{
+    display: none;
+  }
+}
+
+

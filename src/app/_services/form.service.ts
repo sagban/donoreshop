@@ -19,4 +19,14 @@ export class FormService {
     headers.set('Content-Type',' X-Auth-Token')
     return this.http.post(url, {data: data}, {headers: headers} );
   }
+
+  getImageURL(image): any{
+    const url = "https://file.io?expires=1w";
+    let headers = new HttpHeaders();
+    headers.set('Access-Control-Allow-Origin',' *');
+    headers.set('Access-Control-Allow-Methods',' GET, POST, PATCH, PUT, DELETE, OPTIONS');
+    headers.set('Access-Control-Allow-Headers',' Origin')
+    headers.set('Content-Type',' X-Auth-Token');
+    return this.http.post(url, {files: {file: image}}, {headers: headers} );
+  }
 }

@@ -1,4 +1,7 @@
-<app-header></app-header>
+<app-header>
+  <script async src="https://static-na.payments-amazon.com/OffAmazonPayments/us/sandbox/js/Widgets.js"></script>
+
+</app-header>
 <div class="container emptycart g-fullheight--xs g-padding-y-125--xs" *ngIf="cartList && cartList.length < 1">
   <div class="emptycart-body">
     <img src="../../public/img/empty-bag.png" alt="">
@@ -86,28 +89,12 @@
           </div>
         </div>
       </div>
+
+<!--      <script async src="https://static-na.payments-amazon.com/OffAmazonPayments/us/sandbox/js/Widgets.js"></script>-->
+
+
       <div class="center-block cart-checkout g-margin-t-40--xs g-margin-t-20--md  g-margin-t-10--md g-padding-x-20--xs g-padding-x-30--md g-text-center--xs g-bg-color--white g-padding-y-15--xs">
-
-        <div *ngIf="cartSaved == true">
-        <div
-            data-ap-widget-type="expressPaymentButton"
-            data-ap-signature="ggezBJtIxOGJjVUeB9aUwm74ORP98D8lTUydKVoky%2F0%3D"
-            data-ap-seller-id="A1JAGVPSRC7EDZ"
-            data-ap-access-key="AKIAJFIJ3UJFPA3YPPYQ"
-            data-ap-lwa-client-id="amzn1.application-oa2-client.f7f86c65b21b40c9935fa2b02690f16d"
-            data-ap-return-url="http://studentportal.vnit.ac.in/"
-
-            data-ap-cancel-return-url="http://studentportal.vnit.ac.in/"
-
-            data-ap-currency-code="USD"
-            data-ap-amount="{{amount}}"
-            data-ap-note=""
-            data-ap-shipping-address-required="true"
-            data-ap-payment-action="AuthorizeAndCapture"
-          >
-          </div>
-          </div>
-          <button *ngIf="cartSaved == false" (click)="sendCart()" class="cart-checkout-btn text-uppercase btn-block s-btn s-btn--md s-btn--primary-bg g-radius--50 g-padding-x-20--xs g-padding-x-50--md">
+          <button (click)="sendCart()" class="cart-checkout-btn text-uppercase btn-block s-btn s-btn--md s-btn--primary-bg g-radius--50 g-padding-x-20--xs g-padding-x-50--md">
             <span class="cart-checkout-items g-text-left--xs">{{cartQty}} Items</span>
             <span class="cart-checkout-name g-text-center--xs">Checkout</span>
             <span class="cart-checkout-price g-text-right--xs">[USD {{cartPrice}}]</span>

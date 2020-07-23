@@ -6,14 +6,17 @@
     </div>
     <div class="g-media__body g-padding-x-20--xs cart-item-body g-padding-y-10--xs g-padding-y-15--sm">
       <div class="g-margin-b-5--xs cart-item-info">
-          <p class="text-uppercase g-font-size-13--xs g-font-size-14--sm g-font-weight--300 g-color--dark g-margin-b-0--xs">{{title}}</p>
+          <p class="text-uppercase g-font-size-13--xs g-font-size-14--sm g-font-weight--300 g-color--dark g-margin-b-10--xs">{{title}}</p>
           <div class="price-star">
-            <div class="g-font-size-13--xs g-color--dark g-margin-r-5--xs"><span class="g-font-weight--600">Completed: </span>{{status}}</div>
+            <div class="g-font-size-13--xs g-color--dark g-margin-r-5--xs"><span class="g-font-weight--600">Completed: </span>{{status}} %</div>
             <div class="g-font-size-13--xs g-color--dark"><span class="g-font-weight--600">Needed: </span>{{needed}}</div>
           </div>
           <div class="price-star">
-            <div class="g-font-size-13--xs g-color--dark g-margin-r-5--xs"><span class="g-font-weight--600">Obtained: </span>{{obtained}}</div>
-            <div class="g-font-size-13--xs g-color--dark"><span class="g-font-weight--600">Donors: </span>{{donors}}</div>
+            <div class="g-font-size-13--xs g-color--dark g-margin-r-5--xs"><span class="g-font-weight--600">Remaining: </span>{{remaining}}</div>
+            <div class="g-font-size-13--xs g-color--dark"><span class="g-font-weight--600">In stock: </span>
+              <i *ngIf="in_stock == 'true'" class="ti-check"></i>
+              <i *ngIf="in_stock == 'false'" class="ti-close"></i>
+            </div>
           </div>
           <div class="control">
             <button class="control-btn g-color--dark" [ngClass]="{'shake': qtyInt < 2}" (click)="dec()"><i class="ti-minus g-font-size-14--xs"></i></button>

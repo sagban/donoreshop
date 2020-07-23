@@ -45,10 +45,10 @@
                          title="{{item?.title}}"
                          price="{{item?.price}}"
                          image="{{item?.image}}"
-                         needed="{{item?.size}}"
-                         obtained="{{item?.obtained}}"
+                         needed="{{item?.needed}}"
+                         in_stock="{{item?.in_stock}}"
                          status="{{item?.status}}"
-                         donors="{{item?.donors}}"
+                         remaining="{{item?.remaining}}"
                          campaignId="{{campaignId}}"
                          qty="{{item?.qty}}">
           </app-cart-item>
@@ -92,36 +92,9 @@
 
 <!--      <script async src="https://static-na.payments-amazon.com/OffAmazonPayments/us/sandbox/js/Widgets.js"></script>-->
 
-      <div
-        data-ap-widget-type="expressPaymentButton"
-        data-ap-signature="cwaPFAikhB%2FxD4DqSH5zQ08bJWbEWNax6QZEmzp0G4I%3D"
-        data-ap-seller-id="A1JAGVPSRC7EDZ"
-        data-ap-access-key="AKIAJFIJ3UJFPA3YPPYQ"
-        data-ap-lwa-client-id="amzn1.application-oa2-client.3bd25b31db5141c280f7073485451c0d"
-        data-ap-return-url="http://localhost:4200"
-
-        data-ap-cancel-return-url="http://localhost:4200"
-
-        data-ap-currency-code="USD"
-        data-ap-amount="100"
-        data-ap-note=""
-        data-ap-shipping-address-required="true"
-        data-ap-payment-action="AuthorizeAndCapture"
-      >
-      </div>
-
 
       <div class="center-block cart-checkout g-margin-t-40--xs g-margin-t-20--md  g-margin-t-10--md g-padding-x-20--xs g-padding-x-30--md g-text-center--xs g-bg-color--white g-padding-y-15--xs">
-
-<!--        <button *ngIf="cartSaved == false" class="cart-checkout-btn text-uppercase btn-block s-btn s-btn&#45;&#45;md s-btn&#45;&#45;primary-bg g-radius&#45;&#45;50 g-padding-x-20&#45;&#45;xs g-padding-x-50&#45;&#45;md">-->
-
-        <!--        <div ng-class="{'active': cartSaved == true}" style="display: none">-->
-
-
-
-<!--        </button>-->
-<!--          </div>-->
-          <button *ngIf="cartSaved == false" (click)="sendCart()" class="cart-checkout-btn text-uppercase btn-block s-btn s-btn--md s-btn--primary-bg g-radius--50 g-padding-x-20--xs g-padding-x-50--md">
+          <button (click)="sendCart()" class="cart-checkout-btn text-uppercase btn-block s-btn s-btn--md s-btn--primary-bg g-radius--50 g-padding-x-20--xs g-padding-x-50--md">
             <span class="cart-checkout-items g-text-left--xs">{{cartQty}} Items</span>
             <span class="cart-checkout-name g-text-center--xs">Checkout</span>
             <span class="cart-checkout-price g-text-right--xs">[USD {{cartPrice}}]</span>

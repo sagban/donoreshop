@@ -17,6 +17,7 @@ export class DashboardAddCampaignComponent implements OnInit {
   public showList:boolean= false;
   public message:string;
   private debouncer;
+  public url: any;
   constructor(private fb: FormBuilder,
               private formService: FormService,
               private dataService: DataService) { }
@@ -38,12 +39,16 @@ export class DashboardAddCampaignComponent implements OnInit {
 
   public onSubmit(){
     let data = this.addCampaignForm.value;
+    data['image'] = "https://reva.edu.in/blog/wp-content/uploads/2019/03/09_Effective-ways-to-save-water-World-Water-Day.jpg";
     data['ngo'] = 1;
     data['products'] = this.products;
     console.log(data);
     this.message = "Campaign Saved";
+    this.showList = false;
+    this.results = [];
     this.formService.addCampaign(data).subscribe(res=>{
       console.log(res);
+      window.location.href = '/campaign/1/'+res+'/details?event=1';
     });
   }
   public searchProducts(event){
@@ -71,12 +76,23 @@ export class DashboardAddCampaignComponent implements OnInit {
     product['quantity'] = product.quantity;
     console.log(product);
     this.products.push(product);
-    this.showList = false;
-    this.results = [];
+    // this.showList = false;
+    // this.results = [];
   }
 
   public removeProduct(index){
     this.products.slice(index);
+  }
+  onSelectFile(event) { // called each time file input changes
+      if (event.target.files && event.target.files[0]) {
+        var reader = new FileReader();
+
+        reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+        reader.onload = (event) => { // called once readAsDataURL is completed
+          this.url = event.target.result;
+        }
+      }
   }
 
 }

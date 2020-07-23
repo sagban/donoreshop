@@ -4,7 +4,7 @@
             <h2 class="g-font-size-32--xs g-font-size-36--md g-text-center--xs g-text-left--sm g-letter-spacing--1 g-color--dark">Add Campaign</h2>
         </div>
         <div class="row g-margin-t-30--xs g-margin-t-20--sm">
-            <div class="col-xs-12 col-sm-7 col-lg-7 g-hor-centered-row__col">
+            <div class="col-xs-12 col-sm-12 g-hor-centered-row__col">
               <div class="wow fadeInUp center-block g-bg-color--white g-box-shadow__dark-lightest-v2 g-padding-x-40--xs g-padding-y-20--xs g-radius--4" data-wow-duration=".3" data-wow-delay=".1s">
 
                 <form [formGroup]="addCampaignForm" class="g-margin-t-20--xs">
@@ -41,17 +41,20 @@
                   <div class="row">
                     <div class="col-md-12 g-margin-b-20--xs">
                       <div class="g-padding-x-15--xs text-uppercase g-font-size-13--xs g-letter-spacing--1 g-padding-y-5--xs g-text-left--xs g-color--dark-light g-font-size-12--xs g-font-weight--300">* Image</div>
-                      <input type="file" required class="form-control s-form-v4__input shipping-input" formControlName="image" placeholder="* Image">
+                      <input (change)="onSelectFile($event)" type="file" required class="form-control s-form-v4__input shipping-input" formControlName="image" placeholder="* Image">
                       <div *ngIf="f.image?.invalid && (f.image?.dirty || f.image.touched)">
                         <div *ngIf="f.image.errors?.required" class="g-color--primary g-font-size-10--xs">
                          Image is required.
                         </div>
                       </div>
+                      <div class="g-full-width--xs">
+                        <img class="g-height-500--lg" [src]="url" alt="">
+                      </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class=" col-md-6 g-margin-b-20--xs">
-                      <input type="number" class="form-control s-form-v4__input shipping-input" formControlName="size" placeholder="* Nos Affected">
+                      <input type="number" class="form-control s-form-v4__input shipping-input" formControlName="size" placeholder="* Total People Affected">
                       <div *ngIf="f.size.invalid && (f.size?.dirty || f.size?.touched)">
                         <div *ngIf="f.size.errors?.required" class="g-color--primary g-font-size-10--xs">
                           Size is required.
@@ -79,11 +82,24 @@
                   <div class="row">
                     <div class="col-md-12 g-margin-b-20--xs">
                       <input (keyup)="searchProducts($event)" type="text" class="form-control s-form-v4__input shipping-input" placeholder="* Add Products">
+                      <div class="row">
+                        <div class="g-margin-t-10--xs" *ngIf="products.length > 0">
+                          <div *ngFor="let p of products; let i = index" class="clearfix cart-item g-margin-b-20--xs g-padding-y-10--xs g-padding-x-10--xs">
+                            <p class="g-font-size-14--xs g-margin-b-5--xs g-color--dark">Product: <span class="g-color--primary">{{p.asin}}</span></p>
+                            <p class="g-font-size-12--xs g-margin-b-0--x g-color--dark">Quantity: {{p.quantity}}</p>
+                            <div class="g-font-size-12--xs" (click)="removeProduct(i)">Remove</div>
+                          </div>
+                        </div>
+                        <div class="g-text-center--xs g-margin-t-30--xs">
+                            <button (click)="onSubmit()" [disabled]="addCampaignForm.invalid" class="text-uppercase s-btn s-btn--sm s-btn--white-bg s-btn--dark-bg g-font-size-12--xs g-radius--50 g-padding-x-50--xs g-margin-b-20--xs">Submit</button>
+                        </div>
+                        {{message}}
+                      </div>
 
-                      <div *ngIf="showList == true" class="row g-box-shadow__dark-lightest-v2">
+                      <div *ngIf="showList == true" class="row">
                         <div class="g-padding-y-10--xs g-padding-x-10--xs product-overflow">
                           <div *ngIf="results.length > 0">
-                            <div  *ngFor="let res of results; let i = index" class="clearfix cart-item g-margin-b-20--xs">
+                            <div  *ngFor="let res of results; let i = index" class="clearfix cart-item g-margin-b-20--xs col-md-6">
                                 <div class="g-media g-width-100--xs">
                                     <div class="wow fadeInUp" data-wow-duration=".3" data-wow-delay=".8s">
                                       <img src="{{res.image_url}}" alt="image" width="100%">
@@ -107,20 +123,6 @@
                         </div>
                       </div>
                     </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="g-margin-t-10--xs" *ngIf="products.length > 0">
-                      <div *ngFor="let p of products; let i = index" class="clearfix cart-item g-margin-b-20--xs g-padding-y-10--xs g-padding-x-10--xs">
-                        <p class="g-font-size-14--xs g-margin-b-5--xs g-color--dark">Product: <span class="g-color--primary">{{p.asin}}</span></p>
-                        <p class="g-font-size-12--xs g-margin-b-0--x g-color--dark">Quantity: {{p.quantity}}</p>
-                        <div class="g-font-size-12--xs" (click)="removeProduct(i)">Remove</div>
-                      </div>
-                    </div>
-                    <div class="g-text-center--xs g-margin-t-30--xs">
-                        <button (click)="onSubmit()" [disabled]="addCampaignForm.invalid" class="text-uppercase s-btn s-btn--sm s-btn--white-bg s-btn--dark-bg g-font-size-12--xs g-radius--50 g-padding-x-50--xs g-margin-b-20--xs">Submit</button>
-                    </div>
-                    {{message}}
                   </div>
               </div>
             </div>

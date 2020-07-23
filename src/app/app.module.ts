@@ -30,6 +30,7 @@ import { CartComponent } from './cart/cart.component';
 import { ExploreCampaignComponent } from './explore-campaign/explore-campaign.component';
 import {NotificationModule} from './notification/notification.module';
 import {CartItemComponent} from './cart/cart-item/cart-item.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import {CartItemComponent} from './cart/cart-item/cart-item.component';
     CartComponent,
     CartItemComponent,
     ExploreCampaignComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

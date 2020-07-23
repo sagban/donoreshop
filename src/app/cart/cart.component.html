@@ -42,10 +42,10 @@
                          title="{{item?.title}}"
                          price="{{item?.price}}"
                          image="{{item?.image}}"
-                         needed="{{item?.size}}"
-                         obtained="{{item?.obtained}}"
+                         needed="{{item?.needed}}"
+                         in_stock="{{item?.in_stock}}"
                          status="{{item?.status}}"
-                         donors="{{item?.donors}}"
+                         remaining="{{item?.remaining}}"
                          campaignId="{{campaignId}}"
                          qty="{{item?.qty}}">
           </app-cart-item>
@@ -88,7 +88,7 @@
       </div>
       <div class="center-block cart-checkout g-margin-t-40--xs g-margin-t-20--md  g-margin-t-10--md g-padding-x-20--xs g-padding-x-30--md g-text-center--xs g-bg-color--white g-padding-y-15--xs">
 
-        <div ng-class="{'active': cartSaved == true}" style="display: none">
+        <div *ngIf="cartSaved == true">
         <div
             data-ap-widget-type="expressPaymentButton"
             data-ap-signature="ggezBJtIxOGJjVUeB9aUwm74ORP98D8lTUydKVoky%2F0%3D"

@@ -12,9 +12,9 @@ export class CartItemComponent implements OnInit {
   @Input() title: string;
   @Input() price: string;
   @Input() status: string;
-  @Input() obtained: string;
-  @Input() donors: string;
   @Input() needed: string;
+  @Input() in_stock: string;
+  @Input() remaining: string;
   @Input() image: string;
   @Input() qty: string;
   @Input() campaignId: string;

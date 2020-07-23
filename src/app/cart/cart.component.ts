@@ -58,6 +58,7 @@ export class CartComponent implements OnInit {
       if(res){
         this.amount = res;
         this.cartSaved = true;
+        this.ngOnInit();
       }
     });
 

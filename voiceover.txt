@@ -1,0 +1,10 @@
+3. In order to solve this problem, Donezon brings Donors and NGOs on a common platform where NGOs can have listing of amazon products that they are in need and Donors can choose to donate these products using Amazon Pay. This way we achieve to give Donors the transparency for their donation and NGOs to have same quality items.
+
+4. NGO can create a campaign with all necessary details. We fetch products using the Amazon Product Listing API with current price details and the NGO can list all the products with quantities that they need. Donors can see such campaigns and their listed products. He can add products to his cart that he wants to donate and pay the bill amount using Amazon Pay.
+
+5. NGOs can see their donations for a event and can choose to create a cart on Amazon to place order for their products. On successfully placing an order, he can confirm the delivery an dupload the bill for Donors to view.
+
+
+1. Meet Sagar. He is a frequent Donor who likes donates food, education items like books, pen to various NGOs. But often he is skeptical to donate money to any NGO. He rather wishes to have some transparency and asks NGOs if they are in need of some products and he can donate.
+
+2. Meet NGO xyz who often receive lots of products from Donors but the variety in quality of a product makes it difficult for them to distribute it evenly amongst their members. So, they rather collect money and purchase items themselves.

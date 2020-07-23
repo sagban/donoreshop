@@ -54,6 +54,7 @@ class Event(models.Model):
         eventObj.description = event['description']
         eventObj.size = event['size']
         eventObj.ngo = event['ngo']
+        eventObj.image = event['image']
         eventObj.target_date = datetime.strptime(event['target_date'], "%Y-%m-%d").date()
 
         return eventObj

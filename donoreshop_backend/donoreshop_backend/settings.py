@@ -26,6 +26,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['92e1b2cac8ad.ngrok.io',
                  'b3666add970e.ngrok.io',
+                 'http://74dc3d60323c.ngrok.io',
+                 'django-env.eba-xymx9fmb.us-west-2.elasticbeanstalk.com',
                  '*']
 
 # Application definition

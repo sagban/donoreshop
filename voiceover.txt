@@ -1,10 +1,19 @@
-3. In order to solve this problem, Donezon brings Donors and NGOs on a common platform where NGOs can have listing of amazon products that they are in need and Donors can choose to donate these products using Amazon Pay. This way we achieve to give Donors the transparency for their donation and NGOs to have same quality items.
+Meet Sagar. He is a frequent Donor who likes to donate products directly like food and education items to various NGOs. But often he is skeptical to donate money to any NGO and doubts if the donated money is used for the cause. He rather wishes to have some transparency and asks NGOs if they are in need of some products that he can donate.
 
-4. NGO can create a campaign with all necessary details. We fetch products using the Amazon Product Listing API with current price details and the NGO can list all the products with quantities that they need. Donors can see such campaigns and their listed products. He can add products to his cart that he wants to donate and pay the bill amount using Amazon Pay.
+Meet this NGO which wants to provide more transparency to its donors and raise funds. Often it receives a variety of products from Donors. However, the variety in the products and their qualities make it difficult to distribute evenly amongst its members. So, they rather collect money and purchase items themselves.
 
-5. NGOs can see their donations for a event and can choose to create a cart on Amazon to place order for their products. On successfully placing an order, he can confirm the delivery an dupload the bill for Donors to view.
+In order to solve this problem, Donazone brings Donors and NGOs on a common platform. Here, NGOs can have a listing of products through Amazon, that they are in need of. Donors can choose these listed products and donate the bill amount to the NGO.
 
+NGO can create a campaign with all the necessary details. They have to specify the impact and the target date. We fetch products using the Amazon Product Advertising API with current price details and the NGO can list all the products with quantities that it needs. A Donor can see such campaigns and their listed products. He can then add products to his cart on our application and pay the bill amount to the NGO using Amazon Pay.
 
-1. Meet Sagar. He is a frequent Donor who likes donates food, education items like books, pen to various NGOs. But often he is skeptical to donate money to any NGO. He rather wishes to have some transparency and asks NGOs if they are in need of some products and he can donate.
+NGO can then see collective donations for each event and create an Amazon cart. All the donated products get added to the NGO's Amazon cart. Now, it can place an order. On successfully placing an order, NGO can confirm the delivery date and upload the order receipt.
 
-2. Meet NGO xyz who often receive lots of products from Donors but the variety in quality of a product makes it difficult for them to distribute it evenly amongst their members. So, they rather collect money and purchase items themselves.
+This receipt is now available for the Donor to verify the purchase and he is assured that his donation is successful.
+
+On Delivery of the order, NGO can mark the order as delivered. Donor is notified about this delivery.
+
+In this uneventful pandemic of COVID-19 that has affected millions across the world, people who want to donate products to an NGO are scared about physical exposure. Donazone leverages Amazon's e-commerce platform for delivery to make it contactless for the Donors.
+
+May it's your birthday, parents' anniversary, a natural calamity or any event when you wish to donate for a cause. Donazone gives you a seamless way to donate sitting at home and be assured about the use of your donation. NGO's save their efforts of fundraising and purchasing products, in addition to providing complete transparency to their donors.
+
+Our goal is to create a community of donors and non-profit organizations where donations is like buying a gift online. Join us in changing a traditional donation practice and be a part of our community!

@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "http://b3666add970e.ngrok.io/",
+    "target": "http://74dc3d60323c.ngrok.io",
     "secure": false
   }
 }
